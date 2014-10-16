@@ -982,7 +982,7 @@ textarea,
   padding: 0 12px;
   margin-bottom: 14px;
   font-size: 1em;
-  color: #5c6b80;
+  color: #262626;
   border-radius: 3px;
   vertical-align: middle;
   box-shadow: none;
@@ -1250,7 +1250,7 @@ body {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 100%;
   line-height: 1.5;
-  color: #5c6b80;
+  color: #262626;
   background-color: #eaedf2;
   -webkit-font-smoothing: antialiased; }
 
@@ -1358,12 +1358,12 @@ h5, .h5 {
 HEADER STYLES
 *********************/
 .header {
-  background-color: #323944; }
+  background-color: #fff; }
 
 #logo {
   margin: 0.75em 0; }
   #logo a {
-    color: #fff; }
+    /* color: $white; */ }
 
 /*********************
 NAVIGATION STYLES
@@ -1391,7 +1391,7 @@ and more scalable.
     */ }
     .nav li a {
       display: block;
-      color: #fff;
+      color: #666666;
       text-decoration: none;
       padding: 0.75em;
       /*
@@ -1505,7 +1505,7 @@ POSTS & CONTENT STYLES
     max-width: 100%;
     height: auto; }
   .entry-content pre {
-    background: #323944;
+    background: #333333;
     color: #f8f9fa;
     font-size: 0.9em;
     padding: 1.5em;
@@ -1573,10 +1573,10 @@ PAGE NAVI STYLES
       color: #fff; }
   .pagination .current {
     cursor: default;
-    color: #5c6b80; }
+    color: #262626; }
     .pagination .current:hover, .pagination .current:focus {
       background-color: #fff;
-      color: #5c6b80; }
+      color: #262626; }
 
 /* end .bones_page_navi */
 /* fallback previous & next links */
@@ -1687,7 +1687,7 @@ COMMENT FORM STYLES
   font-style: italic;
   margin: 0; }
   .logged-in-as a {
-    color: #5c6b80; }
+    color: #262626; }
 
 .comment-form-comment {
   margin: 1.5em 0 0.75em; }
@@ -1735,7 +1735,7 @@ FOOTER STYLES
 *********************/
 .footer {
   clear: both;
-  background-color: #323944;
+  background-color: #333333;
   color: #f8f9fa; }
 
 /*
@@ -1868,7 +1868,7 @@ you can add resource intensive styles.
     /* highlight current page */
     /* end current highlighters */ }
     .nav ul {
-      background: #323944;
+      background: #333333;
       margin-top: 0; }
     .nav li {
       float: left;
@@ -1884,7 +1884,6 @@ you can add resource intensive styles.
         has the possibility of being a mobile device.
         */ }
         .nav li a:hover, .nav li a:focus {
-          color: #fff;
           text-decoration: underline; }
       .nav li ul.sub-menu,
       .nav li ul.children {
@@ -2116,3 +2115,5 @@ be set to display none.
   .respond-form,
   nav {
     display: none; } }
+
+/*# sourceMappingURL=style.css.map */
