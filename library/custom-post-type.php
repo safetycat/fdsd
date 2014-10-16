@@ -171,7 +171,7 @@ function custom_post_press() {
 
 
 
-// IDEAS IN ACTION POST TYPE ///////////////////
+// IDEAS IN ACTION POST TYPE ////////////////////
 // let's create the function for the custom type
 function custom_post_idea() { 
 	// creating (registering) the custom type 
@@ -223,7 +223,7 @@ function custom_post_idea() {
 	
 	// now let's add custom categories (these act like categories)
 	register_taxonomy( 'themes', 
-		array('event', 'post', 'publication', 'page', 'press', 'idea'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
+		array('event', 'post', 'publication', 'page', 'press', 'idea' ), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
 		array('hierarchical' => true,     /* if this is true, it acts like categories */
 			'labels' => array(
 				'name' => __( 'FDSD Themes', 'bonestheme' ), /* name of the custom taxonomy */
