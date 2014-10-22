@@ -16,11 +16,12 @@ GENERAL STYLES
 *********************/
 
 body {
-	font-family: $lato;
+	
+	font-family: $bodyfont;
 	font-size: 100%;
 	line-height: 1.5;
 	color: $text-color;
-	background-color: $gray;
+	background-color: $white;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -107,8 +108,9 @@ H1, H2, H3, H4, H5 STYLES
 ******************************************************************/
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+	font-family: $headerfont;
 	text-rendering: optimizelegibility;
-	font-weight: 500;
+	font-weight: 400;
 	/*
 	if you're going to use webfonts, be sure to check your weights
 	http://css-tricks.com/watch-your-font-weight/
@@ -121,23 +123,23 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 }
 
 h1, .h1 {
-	font-size: 2.5em;
+	font-size: 2em;
 	line-height: 1.333em;
 }
 
 h2, .h2 {
-	font-size: 1.75em;
+	font-size: 1.5em;
 	line-height: 1.4em;
 	margin-bottom: 0.375em;
 }
 
 h3, .h3 {
-	font-size: 1.125em;
+	font-size: 1.25em;
 }
 
 h4, .h4 {
-	font-size: 1.1em;
-	font-weight: 700;
+	font-size: 1.125em;
+	font-weight: 400;
 }
 
 h5, .h5 {
@@ -178,9 +180,12 @@ and more scalable.
 .nav {
 	border-bottom: 0;
 	margin: 0;
+	font-family: $robofont;
+	font-weight: 500;
 
 	li {
-
+		text-transform: uppercase;
+		
 		a {
 			display: block;
 			color: $dark-gray;
@@ -194,6 +199,7 @@ and more scalable.
 			keep this file as small as possible!
 			*/
 			&:hover, &:focus {
+				background-color: #82dfac;
 				
 			}
 		}
@@ -213,7 +219,7 @@ and more scalable.
 		ul.children {
 
 			li {
-
+				text-transform: capitalize;
 				a {
 					padding-left: 30px;
 
@@ -238,8 +244,8 @@ and more scalable.
 	li.current-menu-item,
 	li.current_page_item,
 	li.current_page_ancestor {
-
-		a {}
+		background-color: #00bd56;
+		a {color: $text-color;}
 
 	}  /* end current highlighters */
 
@@ -258,7 +264,7 @@ POSTS & CONTENT STYLES
 			background-color: $white;
 			border-radius: 3px;
 			margin-bottom: 1.5em;
-			border: 1px solid $border-color;
+			border: none;
 
 			header {
 				border-bottom: 1px solid $light-gray;
@@ -380,14 +386,20 @@ POSTS & CONTENT STYLES
 			}
 
 			blockquote {
-				margin: 0 0 1.5em 0.75em;
-				padding: 0 0 0 0.75em;
-				border-left: 3px solid $blue;
-				font-style: italic;
-				color: $meta-gray;
+				font-family: $headerfont;
+				color: $black;
+				font-size: 1.25em;
+				margin: 0;
+				
 
-				&:before {}
+				&:before {
+				font-family: FontAwesome;
+				content: "\f10d";
+					
+				}
 
+
+ 
 			}
 
 			dl {}
@@ -843,6 +855,9 @@ SIDEBARS & ASIDES
 			}
 
 		}
+		header{padding: 0;}
+		h4{font-size: 1em;}
+		footer{padding: 0; border: 0;}
 
 	}
 

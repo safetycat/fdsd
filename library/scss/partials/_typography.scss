@@ -41,6 +41,19 @@ FONT FACE (IN YOUR FACE)
 */
 
 
+@font-face {
+    font-family: 'roboto_slabregular';
+    src: url('library/fonts/robotoslab-regular-webfont.eot');
+    src: url('library/fonts/robotoslab-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('library/fonts/robotoslab-regular-webfont.woff2') format('woff2'),
+         url('library/fonts/robotoslab-regular-webfont.woff') format('woff'),
+         url('library/fonts/robotoslab-regular-webfont.ttf') format('truetype'),
+         url('library/fonts/robotoslab-regular-webfont.svg#roboto_slabregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 /*
 The following is based of Typebase:
 https://github.com/devinhunt/typebase.css
@@ -50,13 +63,16 @@ I've edited it a bit, but it's a nice starting point.
 
 // font stacks
 $sans-serif:        "Helvetica Neue", Helvetica, Arial, sans-serif;
-$serif:             "Georgia", Cambria, Times New Roman, Times, serif;
+$serif:             "Georgia", Cambria, "Times New Roman", Times, serif;
 
 /*
  i imported this one in the functions file so bones would look sweet.
  don't forget to remove it for your site.
 */
 $lato:              'Lato', $sans-serif;
+$bodyfont: 			'Open Sans', $sans-serif;
+$headerfont:		'roboto_slabregular', $serif;
+$robofont:			'Roboto', $sans-serif;
 
 /*
 some nice typographical defaults
