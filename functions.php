@@ -163,6 +163,16 @@ function bones_register_sidebars() {
 		'before_title' => '<h4 class="widgettitle">',
 		'after_title' => '</h4>',
 	));
+	register_sidebar(array(
+		'id' => 'home',
+		'name' => __( 'Homepage', 'bonestheme' ),
+		'description' => __( 'The Homepage Content area.', 'bonestheme' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h4 class="widgettitle">',
+		'after_title' => '</h4>',
+	));
+	
 
 	/*
 	to add more sidebars or widgetized areas, just copy
@@ -241,7 +251,7 @@ and be up and running in seconds.
 function bones_fonts() {
   //wp_enqueue_style('googleFontsLato', 'http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic');
   wp_enqueue_style('googleFontsOSans', 'http://fonts.googleapis.com/css?family=Open+Sans');
-  wp_enqueue_style('googleFontsRoboto', 'http://fonts.googleapis.com/css?family=Roboto:400,700');
+  wp_enqueue_style('googleFontsRoboto', 'http://fonts.googleapis.com/css?family=Roboto:500');
   
   
 }
@@ -253,6 +263,25 @@ add_action('wp_enqueue_scripts ', 'bones_fonts');
 //////// AFTER BONES //////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 
+
+
+function tw_remove_menu_pages() {
+
+	remove_submenu_page( 'edit.php?post_type=idea', 'edit-tags.php?taxonomy=themes&amp;post_type=idea' );
+	remove_submenu_page( 'edit.php?post_type=idea', 'edit-tags.php?taxonomy=topics&amp;post_type=idea' );
+	
+	remove_submenu_page( 'edit.php?post_type=event', 'edit-tags.php?taxonomy=themes&amp;post_type=event' );
+	remove_submenu_page( 'edit.php?post_type=event', 'edit-tags.php?taxonomy=topics&amp;post_type=event' );
+	
+	remove_submenu_page( 'edit.php?post_type=publication', 'edit-tags.php?taxonomy=themes&amp;post_type=publication' );
+	remove_submenu_page( 'edit.php?post_type=publication', 'edit-tags.php?taxonomy=topics&amp;post_type=publication' );
+	
+	remove_submenu_page( 'edit.php?post_type=press', 'edit-tags.php?taxonomy=themes&amp;post_type=press' );
+	remove_submenu_page( 'edit.php?post_type=press', 'edit-tags.php?taxonomy=topics&amp;post_type=press' );
+	 
+}
+ 
+add_action( 'admin_menu', 'tw_remove_menu_pages', 999 );
 
 
 
