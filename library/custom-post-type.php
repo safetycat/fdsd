@@ -62,7 +62,7 @@ function custom_post_events() {
 			'query_var' => true,
 			'menu_position' => 7, /* this is what order you want it to appear in on the left hand side menu */ 
 			'menu_icon' => 'dashicons-calendar-alt', /* the icon for the custom post type menu */
-			'rewrite'	=> array( 'slug' => 'custom_type', 'with_front' => false ), /* you can specify its url slug */
+			'rewrite'	=> array( 'slug' => 'events', 'with_front' => false ), /* you can specify its url slug */
 			'has_archive' => 'event', /* you can rename the slug here */
 			'capability_type' => 'post',
 			'hierarchical' => false,
@@ -109,7 +109,7 @@ function custom_post_publications() {
 			'query_var' => true,
 			'menu_position' => 8, /* this is what order you want it to appear in on the left hand side menu */ 
 			'menu_icon' => 'dashicons-media-default', /* the icon for the custom post type menu */
-			'rewrite'	=> array( 'slug' => 'custom_type', 'with_front' => false ), /* you can specify its url slug */
+			'rewrite'	=> array( 'slug' => 'publications', 'with_front' => false ), /* you can specify its url slug */
 			'has_archive' => 'publication', /* you can rename the slug here */
 			'capability_type' => 'post',
 			'hierarchical' => false,
@@ -153,7 +153,7 @@ function custom_post_press() {
 			'query_var' => true,
 			'menu_position' => 9, /* this is what order you want it to appear in on the left hand side menu */ 
 			'menu_icon' => 'dashicons-media-spreadsheet', /* the icon for the custom post type menu */
-			'rewrite'	=> array( 'slug' => 'custom_type', 'with_front' => false ), /* you can specify its url slug */
+			'rewrite'	=> array( 'slug' => 'press', 'with_front' => false ), /* you can specify its url slug */
 			'has_archive' => 'press', /* you can rename the slug here */
 			'capability_type' => 'post',
 			'hierarchical' => false,
@@ -200,7 +200,7 @@ function custom_post_idea() {
 			'query_var' => true,
 			'menu_position' => 5, /* this is what order you want it to appear in on the left hand side menu */ 
 			'menu_icon' => 'dashicons-universal-access-alt', /* the icon for the custom post type menu */
-			'rewrite'	=> array( 'slug' => 'custom_type', 'with_front' => false ), /* you can specify its url slug */
+			'rewrite'	=> array( 'slug' => 'ideas', 'with_front' => false ), /* you can specify its url slug */
 			'has_archive' => 'idea', /* you can rename the slug here */
 			'capability_type' => 'post',
 			'hierarchical' => false,
@@ -240,7 +240,7 @@ function custom_post_idea() {
 			'show_admin_column' => true, 
 			'show_ui' => true,
 			'query_var' => true,
-			'rewrite' => array( 'slug' => 'custom-slug' ),
+			'rewrite' => array( 'slug' => 'fdsd_theme' ),
 		)
 	);
 	
@@ -265,7 +265,7 @@ function custom_post_idea() {
 			'show_admin_column' => true, 
 			'show_ui' => true,
 			'query_var' => true,
-			'rewrite' => array( 'slug' => 'custom-slug' ),
+			'rewrite' => array( 'slug' => 'fdsd_topic' ),
 		)
 	);
 	
@@ -282,42 +282,85 @@ function custom_post_idea() {
 				'parent_item' => __( 'Parent Publication Type', 'bonestheme' ), /* parent title for taxonomy */
 				'parent_item_colon' => __( 'Parent Publication Type:', 'bonestheme' ), /* parent taxonomy title */
 				'edit_item' => __( 'Edit Publication Type', 'bonestheme' ), /* edit custom taxonomy title */
-				'update_item' => __( 'Update FPublication Type', 'bonestheme' ), /* update title for taxonomy */
+				'update_item' => __( 'Update Publication Type', 'bonestheme' ), /* update title for taxonomy */
 				'add_new_item' => __( 'Add New Publication Type', 'bonestheme' ), /* add new title for taxonomy */
 				'new_item_name' => __( 'New Publication Type', 'bonestheme' ) /* name title for taxonomy */
 			),
 			'show_admin_column' => true, 
 			'show_ui' => true,
 			'query_var' => true,
-			'rewrite' => array( 'slug' => 'custom-slug' ),
+			'rewrite' => array( 'slug' => 'publication_type' ),
 		)
 	);
 	
+	// now let's add custom categories (these act like categories)
+	register_taxonomy( 'authors', 
+		array( 'publication'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
+		array('hierarchical' => true,     /* if this is true, it acts like categories */
+			'labels' => array(
+				'name' => __( 'Authors', 'bonestheme' ), /* name of the custom taxonomy */
+				'singular_name' => __( 'Author', 'bonestheme' ), /* single taxonomy name */
+				'search_items' =>  __( 'Search Authors', 'bonestheme' ), /* search title for taxomony */
+				'all_items' => __( 'All Authors', 'bonestheme' ), /* all title for taxonomies */
+				'parent_item' => __( 'Parent Author', 'bonestheme' ), /* parent title for taxonomy */
+				'parent_item_colon' => __( 'Parent Author:', 'bonestheme' ), /* parent taxonomy title */
+				'edit_item' => __( 'Edit Author', 'bonestheme' ), /* edit custom taxonomy title */
+				'update_item' => __( 'Update Author', 'bonestheme' ), /* update title for taxonomy */
+				'add_new_item' => __( 'Add New Author', 'bonestheme' ), /* add new title for taxonomy */
+				'new_item_name' => __( 'New Author', 'bonestheme' ) /* name title for taxonomy */
+			),
+			'show_admin_column' => true, 
+			'show_ui' => true,
+			'query_var' => true,
+			'rewrite' => array( 'slug' => 'Authors' ),
+		)
+	);
 	
-	
+	// now let's add custom categories (these act like categories)
+	register_taxonomy( 'pub_year', 
+		array( 'publication'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
+		array('hierarchical' => true,     /* if this is true, it acts like categories */
+			'labels' => array(
+				'name' => __( 'Year of Publication', 'bonestheme' ), /* name of the custom taxonomy */
+				'singular_name' => __( 'Year of Publication', 'bonestheme' ), /* single taxonomy name */
+				'search_items' =>  __( 'Search Publication Years', 'bonestheme' ), /* search title for taxomony */
+				'all_items' => __( 'All Publication Years', 'bonestheme' ), /* all title for taxonomies */
+				'parent_item' => __( 'Parent Publication Year', 'bonestheme' ), /* parent title for taxonomy */
+				'parent_item_colon' => __( 'Parent Publication Year:', 'bonestheme' ), /* parent taxonomy title */
+				'edit_item' => __( 'Edit Publication Year', 'bonestheme' ), /* edit custom taxonomy title */
+				'update_item' => __( 'Update Publication Year', 'bonestheme' ), /* update title for taxonomy */
+				'add_new_item' => __( 'Add New Publication Year', 'bonestheme' ), /* add new title for taxonomy */
+				'new_item_name' => __( 'New Publication Year', 'bonestheme' ) /* name title for taxonomy */
+			),
+			'show_admin_column' => true, 
+			'show_ui' => true,
+			'query_var' => true,
+			'rewrite' => array( 'slug' => 'pub_year' ),
+		)
+	);	
 	
 	// now let's add custom tags (these act like categories)
-	register_taxonomy( 'custom_tag', 
-		array('custom_type'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
-		array('hierarchical' => false,    /* if this is false, it acts like tags */
+	/* register_taxonomy( 'custom_tag', 
+		array('custom_type'), //if you change the name of register_post_type( 'custom_type', then you have to change this 
+		array('hierarchical' => false,    // if this is false, it acts like tags 
 			'labels' => array(
-				'name' => __( 'Custom Tags', 'bonestheme' ), /* name of the custom taxonomy */
-				'singular_name' => __( 'Custom Tag', 'bonestheme' ), /* single taxonomy name */
-				'search_items' =>  __( 'Search Custom Tags', 'bonestheme' ), /* search title for taxomony */
-				'all_items' => __( 'All Custom Tags', 'bonestheme' ), /* all title for taxonomies */
-				'parent_item' => __( 'Parent Custom Tag', 'bonestheme' ), /* parent title for taxonomy */
-				'parent_item_colon' => __( 'Parent Custom Tag:', 'bonestheme' ), /* parent taxonomy title */
-				'edit_item' => __( 'Edit Custom Tag', 'bonestheme' ), /* edit custom taxonomy title */
-				'update_item' => __( 'Update Custom Tag', 'bonestheme' ), /* update title for taxonomy */
-				'add_new_item' => __( 'Add New Custom Tag', 'bonestheme' ), /* add new title for taxonomy */
-				'new_item_name' => __( 'New Custom Tag Name', 'bonestheme' ) /* name title for taxonomy */
+				'name' => __( 'Custom Tags', 'bonestheme' ), // name of the custom taxonomy 
+				'singular_name' => __( 'Custom Tag', 'bonestheme' ), // single taxonomy name 
+				'search_items' =>  __( 'Search Custom Tags', 'bonestheme' ), // search title for taxomony 
+				'all_items' => __( 'All Custom Tags', 'bonestheme' ), // all title for taxonomies 
+				'parent_item' => __( 'Parent Custom Tag', 'bonestheme' ), // parent title for taxonomy 
+				'parent_item_colon' => __( 'Parent Custom Tag:', 'bonestheme' ), /* parent taxonomy title 
+				'edit_item' => __( 'Edit Custom Tag', 'bonestheme' ), // edit custom taxonomy title 
+				'update_item' => __( 'Update Custom Tag', 'bonestheme' ), // update title for taxonomy 
+				'add_new_item' => __( 'Add New Custom Tag', 'bonestheme' ), // add new title for taxonomy 
+				'new_item_name' => __( 'New Custom Tag Name', 'bonestheme' ) // name title for taxonomy
 			),
 			'show_admin_column' => true,
 			'show_ui' => true,
 			'query_var' => true,
 		)
 	);
-	
+	*/
 	/*
 		looking for custom meta boxes?
 		check out this fantastic tool:

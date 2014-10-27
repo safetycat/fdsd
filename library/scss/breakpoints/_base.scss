@@ -164,6 +164,7 @@ HEADER STYLES
 			/* color: $white; */
 		}
 	}
+		#site-desc{color: $meta-gray;}
 
 /*********************
 NAVIGATION STYLES
@@ -185,7 +186,7 @@ and more scalable.
 
 	li {
 		text-transform: uppercase;
-		
+		border-bottom: 5px solid $white;
 		a {
 			display: block;
 			color: $dark-gray;
@@ -244,7 +245,7 @@ and more scalable.
 	li.current-menu-item,
 	li.current_page_item,
 	li.current_page_ancestor {
-		background-color: #00bd56;
+		border-bottom: 5px solid #00bd56;
 		a {color: $text-color;}
 
 	}  /* end current highlighters */
@@ -839,9 +840,11 @@ SIDEBARS & ASIDES
 
 	.widget {
 
+
 		ul {
 
 			li {
+
 
 				&:first-child {}
 
@@ -859,7 +862,34 @@ SIDEBARS & ASIDES
 		h4{font-size: 1em;}
 		footer{padding: 0; border: 0;}
 
+		
+
 	}
+.homewidget{
+			background-color: #F7F7F7;
+		}
+#sidebar1 .widget {
+	li {
+
+				/* fallback */
+		background-color: #ffffff;
+		background: url(image); background-repeat: repeat-x;
+		/* Safari 4-5, Chrome 1-9 */
+		background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#f2f8f2));
+		/* Safari 5.1, Chrome 10+ */
+		background: -webkit-linear-gradient(top, #ffffff, #f2f8f2);
+		/* Firefox 3.6+ */
+		background: -moz-linear-gradient(top, #ffffff, #f2f8f2);
+		/* IE 10 */
+		background: -ms-linear-gradient(top, #ffffff, #f2f8f2);
+		/* Opera 11.10+ */
+		background: -o-linear-gradient(top, #ffffff, #f2f8f2); 
+	}
+
+}
+
+
+
 
 	.no-widgets {
 		background-color: $white;

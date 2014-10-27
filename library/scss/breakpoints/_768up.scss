@@ -34,6 +34,11 @@ HEADER STYLES
 .header {}
 
 	#logo {}
+	#site-desc{display: inline-block;
+width: 400px;
+float: right;
+text-align: right;
+padding-top: 40px;}
 
 /*********************
 NAVIGATION STYLES
@@ -41,6 +46,8 @@ NAVIGATION STYLES
 
 .nav {
 	border: 0;
+	border-top: $light-gray solid 1px;
+	border-bottom: $gray solid 1px;
 	ul {
 		background:$white;
 		margin-top:0;
@@ -51,6 +58,7 @@ NAVIGATION STYLES
 
 		a {
 			border-bottom: 0;
+			padding: 0.2em 0.6em;
 
 			/*
 			you can use hover styles here even though this size
@@ -92,7 +100,7 @@ NAVIGATION STYLES
 					&:link {}
 				}
 
-				&:first-child {}
+				&:first-child {border-top: 1px solid #ccc;}
 
 				&:last-child {
 
@@ -152,7 +160,7 @@ SIDEBARS & ASIDES
 		font-family: $robofont;
 		text-transform: uppercase;
 		color: #333;
-		background-color: #69d89c;
+		font-weight: 500;
 	}
 
 	.widget {
@@ -175,6 +183,9 @@ SIDEBARS & ASIDES
 			}
 		}
 	}
+#sidebar1 .widgettitle {
+		background-color: #B1E5B5;
+}
 
 
 	/* links widget */
