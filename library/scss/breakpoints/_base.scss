@@ -252,6 +252,7 @@ and more scalable.
 
 } /* end .nav */
 
+.menu-item-search input{display: inline;width: 50%;}
 
 /*********************
 POSTS & CONTENT STYLES
@@ -573,6 +574,15 @@ PAGE NAVI STYLES
 		}
 
 	} /* end .wp-prev-next */
+/******************************************************************
+PLUGIN STYLES
+******************************************************************/
+
+.searchandfilter ul li {
+
+    padding:  0;
+}
+
 
 /******************************************************************
 COMMENT STYLES
@@ -862,7 +872,7 @@ SIDEBARS & ASIDES
 		h4{font-size: 1em;}
 		footer{padding: 0; border: 0;}
 
-		
+
 
 	}
 .homewidget{
