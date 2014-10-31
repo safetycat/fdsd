@@ -2,23 +2,9 @@
 /**
  * Search & Filter Pro 
  *
- * Sample Results Template
+ *  Results Template
  * 
- * @package   Search_Filter
- * @author    Ross Morsali
- * @link      http://www.designsandcode.com/
- * @copyright 2014 Designs & Code
- * 
- * Note: these templates are not full page templates, rather 
- * just an encaspulation of the your results loop which should
- * be inserted in to other pages by using a shortcode
- * 
- * This template is an absolute base example showing you what
- * you can do, for more customisation see the WordPress docs 
- * and using template tags - 
- * 
- * http://codex.wordpress.org/Template_Tags
- *
+ 
  */
 
 if ( $query->have_posts() )
@@ -79,7 +65,14 @@ if ( $query->have_posts() )
 			?>
 
 
-			<?php if ('publication' == get_post_type() ){ echo "<span class='download btn'>Download</span>"; } ?>
+			<?php  // Download - can be multiple
+                  if( have_rows('download') ):
+                      while ( have_rows('download') ) : the_row();
+                        echo ("<div class='downl-btn'><a href='" . get_sub_field('document') . "' >Download</a></div>");
+                        //the_sub_field('document');
+                      endwhile;
+                  endif;
+ ?>
 
 			<!-- <p><?php the_tags(); ?><p>
 			<p><small><?php the_date(); ?></small><p> -->
@@ -89,8 +82,8 @@ if ( $query->have_posts() )
 				<span class="readmore"><a href="<?php the_permalink(); ?>">Read More</a></span>
 			
 
-			 <?php if ('publication' == get_post_type() ){
-				
+			 
+				<?php
 				 	
 
 				 		$topics = get_the_term_list( $post->ID, 'topics', 'Topics: ', ', ' ); 
@@ -103,7 +96,7 @@ if ( $query->have_posts() )
 
 
 
-					} // end if publication
+					
 			?>
 
 
