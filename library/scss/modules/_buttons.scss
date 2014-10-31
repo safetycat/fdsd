@@ -31,11 +31,11 @@ http://www.youtube.com/watch?v=hwdVpKiJzac
   text-decoration: none;
   color: $white;
   font-size: 0.9em;
-  font-size: 34px;
+  
   line-height: 34px;
   font-weight: normal;
   padding: 0 24px;
-  border-radius: 4px;
+
   border: 0;
   cursor: pointer;
   @include transition(background-color 0.14s ease-in-out);
@@ -72,3 +72,36 @@ and it will create a button dependant on those variables.
   } // end active
 
 } // end blue button
+
+.btn {
+  @extend %btn; // here we load the btn defaults
+  bcolor: $white;
+  background-color: $button-col;
+
+  &:hover,
+  &:focus {
+    background-color: darken($button-col, 4%);
+  } // end hover
+
+  &:active {
+    background-color: darken($button-col, 5%);
+  } // end active
+
+} // end general button
+
+.downl-btn {
+  @extend %btn; // here we load the btn defaults
+  bcolor: $white;
+  background-color: $button-col;
+
+  &:hover,
+  &:focus {
+    background-color: darken($button-col, 4%);
+  } // end hover
+
+  &:active {
+    background-color: darken($button-col, 5%);
+  } // end active
+
+} // end general button
+
