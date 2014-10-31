@@ -38,36 +38,60 @@ if ( $query->have_posts() )
 		global $post;
 		
 		?>
-		<div>
-			<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-			 <?php if ('publication' == get_post_type() ){
-					
-						/*// Display Authors
-				 		$authors = wp_get_post_terms($post->ID, 'authors', array("fields" => "names"));
-					 	if($authors){
-					 		echo "<div class='authors pub-meta'>Authors: ";
-					 		$count = count($authors);
-					 		for($i=0; $i<$count; $i++){
-		    					echo $authors[$i]; 
-		    					if($i<=$count-2) {echo ", ";}
-							}
-							echo "</div>";
-				 		}
-						// Display Year of publication
-				 		$years = wp_get_post_terms($post->ID, 'pub_year', array("fields" => "names"));
-					 	if($years){
-					 		echo "<div class='years pub-meta'>Year of Publication: ";
-					 		foreach( $years as $year ) {
-		    					echo $year . ' '; // Added a space between the slugs with . ' '
-							}
-							echo "</div>";
-				 		}*/
-				 		echo "<div class='pubmetabox'>";
-				 		$authors = get_the_term_list( $post->ID, 'authors', 'Authors: ', ', ' ); 
-						echo ("<div class='pub-meta tax-authors'>" . $authors . "</div>");
+		<article id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
-						$years = get_the_term_list( $post->ID, 'pub_year', 'Year of Publication: ', ', ' ); 
-				 		echo ("<div class='pub-meta tax-years'>" . $years . "</div>");
+                <header class="article-header">
+<?php
+			$publication_type = get_the_terms( $post->ID, 'publication_type', '', ', ' ); 
+                    $publication_type =(array_pop($publication_type));
+
+                    echo ("<div class='pub-meta tax-pub_type'>" . $publication_type->name. "</div>");
+?>
+
+			<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+
+			<p class="byline vcard">
+                    <?php 
+                    
+                    $years = get_the_term_list( $post->ID, 'pub_year', 'Published: ', ', ' ); 
+                    echo ("<div class='pub-meta tax-years'>" . $years . "</div>");
+
+                    $authors = get_the_term_list( $post->ID, 'authors', 'Author(s): ', ', ' ); 
+                    echo ("<div class='pub-meta tax-authors'>" . $authors . "</div>");
+
+
+                    ?>
+                  
+                  </p>
+		</header>
+
+			
+
+			<?php the_excerpt(); ?>
+
+
+			<?php 
+				if ( has_post_thumbnail() ) {
+					echo '<p>';
+					the_post_thumbnail("small");
+					echo '</p>';
+				}
+			?>
+
+
+			<?php if ('publication' == get_post_type() ){ echo "<span class='download btn'>Download</span>"; } ?>
+
+			<!-- <p><?php the_tags(); ?><p>
+			<p><small><?php the_date(); ?></small><p> -->
+
+
+
+				<span class="readmore"><a href="<?php the_permalink(); ?>">Read More</a></span>
+			
+
+			 <?php if ('publication' == get_post_type() ){
+				
+				 	
 
 				 		$topics = get_the_term_list( $post->ID, 'topics', 'Topics: ', ', ' ); 
 				 		echo ("<div class='pub-meta tax-topics'>" . $topics . "</div>");
@@ -82,20 +106,8 @@ if ( $query->have_posts() )
 					} // end if publication
 			?>
 
-			<?php the_excerpt(); ?>
-			<?php 
-				if ( has_post_thumbnail() ) {
-					echo '<p>';
-					the_post_thumbnail("small");
-					echo '</p>';
-				}
-			?>
-			
-			<!-- <p><?php the_tags(); ?><p>
-			<p><small><?php the_date(); ?></small><p> -->
-				<span class="readmore">Read More</span>
-			<?php if ('publication' == get_post_type() ){ echo "<span class='download'>Download</span>"; } ?>
-		</div>
+
+		</article>
 		
 		
 		<?php
