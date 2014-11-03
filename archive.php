@@ -39,7 +39,15 @@
 									<h1 class="archive-title h2">
 										<span><?php _e( 'Yearly Archives:', 'bonestheme' ); ?></span> <?php the_time('Y'); ?>
 									</h1>
-							<?php } ?>
+							<?php } elseif (is_tax()) { ?>
+									<h1 class="archive-title h2">
+										<?php single_cat_title(); ?>
+									</h1>
+							<?php } 
+
+
+
+							?>
 
 							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
@@ -55,7 +63,10 @@
 								</header>
 
 								<section class="entry-content cf">
-
+									<?php if (is_post_type_hierarchical( 'publication' ) ){
+										echo "is publication";
+									}
+									?>
 									<?php the_post_thumbnail( 'bones-thumb-300' ); ?>
 
 									<?php the_excerpt(); ?>

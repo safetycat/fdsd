@@ -22,7 +22,7 @@
 
 						<h1 class="archive-title h2"><?php post_type_archive_title(); ?></h1>
 
-<?php echo do_shortcode( '[searchandfilter fields="search,publication_type,pub_year,authors,topics,themes," headings="Search,Publication Type,Year,Author(s),Topics,Themes" post_types="publication" ]' ); ?>
+<?php //echo do_shortcode( '[searchandfilter id="547"]' ); ?>
 
 							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 

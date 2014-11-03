@@ -283,6 +283,40 @@ add_filter('wp_nav_menu_items','add_search_to_wp_menu',10,2);
 
 
 
+////////// Custom Columns ///////
+
+
+
+function add_idea_columns($columns) {
+    //unset($columns['author']);
+    return array_merge($columns, 
+              array('featured_idea' => __('Featured')));
+}
+add_filter('manage_idea_posts_columns' , 'add_idea_columns');
+
+
+
+add_action( 'manage_posts_custom_column' , 'custom_columns', 10, 2 );
+
+function custom_columns( $column, $post_id ) {
+    switch ( $column ) {
+  case 'featured_idea' :
+      $field = get_field('featured_idea');
+
+      //$terms = get_the_term_list( $post_id , 'featured_idea' , '' , ',' , '' );
+     // print_r($field);
+            if ($field[0] != "" )
+              echo "Y";
+            break;
+
+  case 'publisher' :
+      echo get_post_meta( $post_id , 'publisher' , true ); 
+      break;
+    }
+}
+
+
+
 // Remove duplicate admin pages for themes & topics
 function tw_remove_menu_pages() {
 
