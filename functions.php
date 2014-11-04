@@ -75,6 +75,7 @@ if ( ! isset( $content_width ) ) {
 // Thumbnail sizes
 add_image_size( 'bones-thumb-600', 600, 150, true );
 add_image_size( 'bones-thumb-300', 300, 100, true );
+add_image_size( 'idea-thumb', 378, 212 );
 
 /*
 to add more sizes, simply copy a line from above
@@ -253,15 +254,32 @@ function bones_fonts() {
   wp_enqueue_style('googleFontsOSans', 'http://fonts.googleapis.com/css?family=Open+Sans');
   wp_enqueue_style('googleFontsRoboto', 'http://fonts.googleapis.com/css?family=Roboto:500');
   
-  
 }
 
-add_action('wp_enqueue_scripts ', 'bones_fonts');
+add_action('wp_enqueue_scripts', 'bones_fonts');
+
 
 
 /////////////////////////////////////////////////////////////////////////
 //////// AFTER BONES //////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
+
+
+   
+/**
+* Enqueue Font Awesome Stylesheet from MaxCDN
+*
+*/   
+   add_action( 'wp_enqueue_scripts', 'webendev_load_font_awesome', 99 );
+
+function webendev_load_font_awesome() {
+
+wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css', null, '4.0.1' );
+ 
+}
+
+
+
 
 // Register top navigation
 register_nav_menus( array(
@@ -282,6 +300,40 @@ add_filter('wp_nav_menu_items','add_search_to_wp_menu',10,2);
 
 
 
+// Change order of comment fields (textbox to top)
+// We use just one function for both jobs.
+add_filter( 'comment_form_defaults', 'remove_textarea' );
+add_action( 'comment_form_top', 'add_textarea' );
+
+
+function remove_textarea($defaults)
+{
+    $defaults['comment_field'] = '';
+    return $defaults;
+}
+
+function add_textarea()
+{
+    echo '<p class="comment-form-comment"><label for="comment">If you know of any practical examples which link democracy and sustainable development, please provide a few details and a web link below. Many thanks.</label><textarea id="comment" name="comment" cols="60" rows="6" placeholder="Enter your comment here..." aria-required="true"></textarea></p>';
+}
+
+
+
+
+// Add class to searchfilter results
+
+
+// Add specific CSS class by filter
+add_filter( 'body_class', 'searchfilterclass' );
+function searchfilterclass( $classes ) {
+  // add 'class-name' to the $classes array
+  if (isset($_POST)){
+   $classes[] = 'searchfilter'; 
+  }
+  
+  // return the $classes array
+  return $classes;
+}
 
 ////////// Custom Columns ///////
 
