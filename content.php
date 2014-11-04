@@ -20,10 +20,13 @@
 
                    <?php 
                     
-                    $publication_type = get_the_terms( $post->ID, 'publication_type', '', ', ' ); 
-                    $publication_type =(array_pop($publication_type));
+                    $publication_type = get_the_terms( $post->ID, 'publication_type'); 
+                    if($publication_type != false){
+                      $publication_type=(array_pop($publication_type));
+                      echo ("<div class='pub-meta tax-pub_type'>" . $publication_type->name. "</div>");
+                    } 
 
-                    echo ("<div class='pub-meta tax-pub_type'>" . $publication_type->name. "</div>");
+                    
                     ?>
                    
                   <h1 class="entry-title single-title" itemprop="headline"><?php the_title(); ?></h1>
@@ -46,6 +49,12 @@
 
                 <section class="entry-content cf" itemprop="articleBody">
                   <?php
+
+                    if('idea' == get_post_type()){
+                      the_post_thumbnail('large');
+                  }
+
+
                     // the content (pretty self explanatory huh)
                     the_content();
 
@@ -61,6 +70,17 @@
                     ) );
 
 
+                    // Ideas in Action
+                    // Links
+                    if( have_rows('link') ):
+                      while ( have_rows('link') ) : the_row();
+                        echo ("<div class='link-btn'><i class='fa fa-external-link'></i><a href='" . get_sub_field('url') . "' >" . get_sub_field('url') . "</a></div>");
+                        //the_sub_field('document');
+                      endwhile;
+                  endif;
+
+
+                  //Publications
                   // Download - can be multiple
                   if( have_rows('download') ):
                       while ( have_rows('download') ) : the_row();
@@ -89,6 +109,9 @@
 
                 </footer> <?php // end article footer ?>
 
-                <?php comments_template(); ?>
+                <?php if('idea' != get_post_type()){
+                  comments_template();
+                  }
+                   ?>
 
               </article> <?php // end article ?>
