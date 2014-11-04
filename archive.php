@@ -63,10 +63,7 @@
 								</header>
 
 								<section class="entry-content cf">
-									<?php if (is_post_type_hierarchical( 'publication' ) ){
-										echo "is publication";
-									}
-									?>
+									
 									<?php the_post_thumbnail( 'bones-thumb-300' ); ?>
 
 									<?php the_excerpt(); ?>
