@@ -4,7 +4,7 @@
  *
  *  Results Template
  * 
- *
+ 
  */
 
 if ( $query->have_posts() )
