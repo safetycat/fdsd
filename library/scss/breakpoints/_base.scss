@@ -263,19 +263,19 @@ POSTS & CONTENT STYLES
 }
 
 		.hentry {
-			background-color: $white;
+			background-color: $pale-background;
 			border-radius: 3px;
 			margin-bottom: 1.5em;
 			border: none;
 
 			header {
-				border-bottom: 1px solid $light-gray;
+				border-bottom: none;
 				padding: 1.5em;
 			}
 
 			footer {
 				padding: 1.5em;
-				border-top: 1px solid $light-gray;
+				border-top: none;
 
 				p {
 					margin: 0;
@@ -500,6 +500,35 @@ POSTS & CONTENT STYLES
 	.tags {
 		margin: 0;
 	}
+/******************************************************************
+CUSTOM CONTENT
+******************************************************************/
+
+#ideas_grid li{
+	display: inline-block;
+	margin: 1em 0;
+}
+
+
+
+.ideabox {
+	background: rgba(90, 72, 89, 0.8);
+	 height: 4em;
+    margin-top: -2em;
+    padding: 0.5em;
+    color: $white;
+	h3{
+		display: inline;
+		
+		font-size: 1.1em;
+		a{color: $white;
+
+			&:hover, &:focus {
+				color: $link-hover;
+			}
+		}
+	}
+}
 
 /******************************************************************
 PAGE NAVI STYLES
@@ -578,15 +607,23 @@ PAGE NAVI STYLES
 PLUGIN STYLES
 ******************************************************************/
 
-.searchandfilter ul li {
+.searchandfilter {
+	margin-bottom: 1em;
+	ul li {
 
-    padding:  0;
+	    padding:  0;
+	}	
 }
+
 
 
 /******************************************************************
 COMMENT STYLES
 ******************************************************************/
+
+#respond{
+	background-color: $pale-background;
+}
 
 /* h3 comment title */
 #comments-title {
@@ -802,6 +839,9 @@ COMMENT FORM STYLES
 
 	.comment-form-comment {
 		margin: 1.5em 0 0.75em;
+		label{ 	display: block;
+    			margin-bottom: 1em;
+    	}
 	}
 
 	.form-allowed-tags {
