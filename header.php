@@ -64,7 +64,7 @@
 						
 					</div>
 					<?php // to use a image just replace the bloginfo('name') with your img src and remove the surrounding <p> ?>
-					<a href="<?php echo home_url(); ?>" rel="nofollow"><img src="/wp-content/uploads/2014/10/logo.jpg"></a>
+					<a href="<?php echo home_url(); ?>" rel="nofollow"><img src="<?php echo site_url() ; ?>/wp-content/uploads/2014/10/logo.jpg"></a>
 
 					<?php // if you'd like to use the site description you can un-comment it below ?>
 					<div id="site-desc">
