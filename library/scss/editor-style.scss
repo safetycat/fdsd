@@ -35,7 +35,7 @@ body#tinymce.wp-editor {
 	font-family: $bodyfont;
 	font-size: 100%;
 	line-height: 1.5;
-	color: $text-color;
+	color: black;
   -webkit-font-smoothing: antialiased;
 
   /*********************
@@ -61,6 +61,27 @@ body#tinymce.wp-editor {
 		}
 	}
 
+	  /*********************
+	LIST STYLES
+	*********************/
+	ul { 
+	   list-style-type: disc !important; 
+	   list-style-position: inside; 
+	}
+	ol { 
+	   list-style-type: decimal !important; 
+	   list-style-position: inside; 
+	}
+	ul ul, ol ul { 
+	   list-style-type: circle; 
+	   list-style-position: inside; 
+	   margin-left: 15px; 
+	}
+	ol ol, ul ol { 
+	   list-style-type: lower-latin; 
+	   list-style-position: inside; 
+	   margin-left: 15px; 
+	}
 	/******************************************************************
 	H1, H2, H3, H4, H5 STYLES
 	******************************************************************/

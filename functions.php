@@ -75,7 +75,7 @@ if ( ! isset( $content_width ) ) {
 // Thumbnail sizes
 add_image_size( 'bones-thumb-600', 600, 150, true );
 add_image_size( 'bones-thumb-300', 300, 100, true );
-add_image_size( 'idea-thumb', 378, 212 );
+add_image_size( 'idea-thumb', 378, 213, true );
 
 /*
 to add more sizes, simply copy a line from above
@@ -206,7 +206,9 @@ function bones_register_sidebars() {
 
 // Comment Layout
 function bones_comments( $comment, $args, $depth ) {
-   $GLOBALS['comment'] = $comment; ?>
+   $GLOBALS['comment'] = $comment; 
+
+   ?>
   <div id="comment-<?php comment_ID(); ?>" <?php comment_class('cf'); ?>>
     <article  class="cf">
       <header class="comment-author vcard">
@@ -308,13 +310,18 @@ add_action( 'comment_form_top', 'add_textarea' );
 
 function remove_textarea($defaults)
 {
+  if(is_page('ideas-in-action')){
     $defaults['comment_field'] = '';
+  }
+    
     return $defaults;
 }
 
 function add_textarea()
 {
+  if(is_page('ideas-in-action')){
     echo '<p class="comment-form-comment"><label for="comment">If you know of any practical examples which link democracy and sustainable development, please provide a few details and a web link below. Many thanks.</label><textarea id="comment" name="comment" cols="60" rows="6" placeholder="Enter your comment here..." aria-required="true"></textarea></p>';
+  }
 }
 
 
