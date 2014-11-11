@@ -53,6 +53,7 @@
     					'menu' => __( 'The Mini Top Menu', 'bonestheme' ),  // nav name
     					'menu_class' => 'nav mini-nav cf',               // adding custom nav class
     					'theme_location' => 'minitop',                 // where it's located in the theme
+    					'items_wrap'      => '<ul id="%1$s" class="%2$s"><li><a href="http://www.fdsd.org"><i class="fa fa-home"></i></a></li>%3$s</ul>',
     					'before' => '',                                 // before the menu
         			'after' => '',                                  // after the menu
         			'link_before' => '',                            // before each link
@@ -64,7 +65,7 @@
 						
 					</div>
 					<?php // to use a image just replace the bloginfo('name') with your img src and remove the surrounding <p> ?>
-					<a href="<?php echo home_url(); ?>" rel="nofollow"><img src="<?php echo site_url() ; ?>/wp-content/uploads/2014/10/logo.jpg"></a>
+					<a href="<?php echo home_url(); ?>" rel="nofollow"><img id="logo" src="<?php echo site_url() ; ?>/wp-content/uploads/2014/10/logo.jpg"></a>
 
 					<?php // if you'd like to use the site description you can un-comment it below ?>
 					<div id="site-desc">

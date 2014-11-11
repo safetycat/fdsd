@@ -23,9 +23,9 @@
 							
 							
 							<?php if ( is_active_sidebar( 'home' ) ) { ?>
-
+							<div id="homewidgetarea">
 						<?php dynamic_sidebar( 'home' ); }?>							
-							
+							</div>
 							
 							
 

@@ -33,12 +33,13 @@ HEADER STYLES
 
 .header {}
 
-	#logo {}
+	#logo {width: 50%}
 	#site-desc{display: inline-block;
-width: 400px;
-float: right;
-text-align: right;
-padding-top: 40px;}
+		font-size: 0.8em;
+    	width: 40%;
+		float: right;
+		text-align: right;
+		 padding-top: 2em;}
 
 /*********************
 NAVIGATION STYLES
@@ -146,21 +147,69 @@ NAVIGATION STYLES
 
 } /* end .nav */
 
+/* Top Nav */
+#topbar {
+	padding-top: 0.5em;
+	 
+	.nav{
+		border-top: none;
+		border-bottom: none;
+		float: right;
+		font-size: 0.8em;
+		li{
+		padding-top: 0.5em;
+		&.menu-item-search{
+			padding-top: 0;	
+		}
+			a {
+				&:hover, &:focus {
+					background-color: transparent;
+					text-decoration: underline;
+					
+				}
+			}
+		}
+		
+	}
+}
+/* Footer Nav */
+
+.footer .nav{
+border-top: none;
+border-bottom: none;
+	li {
+
+		a {
+			&:hover, &:focus {
+				background-color: transparent;
+				border-bottom: 5px solid $white;
+				text-decoration: none;
+				
+			}
+		}
+
+	}
+	li.current-menu-item,
+	li.current_page_item,
+	li.current_page_ancestor {
+		border-bottom: 5px solid #00bd56;
+		a {color: $text-color;}
+
+	}  /* end current highlighters */
+}
+
+
+
 /*********************
 SIDEBARS & ASIDES
 *********************/
 
 .sidebar {
-	margin-top: 2.2em;
+	margin-top: 0;
 }
 
 	.widgettitle {
-				margin-bottom: 0.75em;
-		padding: 0.5em 1em;
-		font-family: $robofont;
-		text-transform: uppercase;
-		color: #333;
-		font-weight: 500;
+
 	}
 
 	.widget {

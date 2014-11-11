@@ -186,7 +186,7 @@ and more scalable.
 
 	li {
 		text-transform: uppercase;
-		border-bottom: 5px solid $white;
+		border-bottom: 5px solid transparent;
 		a {
 			display: block;
 			color: $dark-gray;
@@ -252,7 +252,40 @@ and more scalable.
 
 } /* end .nav */
 
-.menu-item-search input{display: inline;width: 50%;}
+.menu-item-search input{
+	display: inline;
+	width: 50%;
+	&#searchsubmit{
+		width: 40%;
+		margin-left: 8%;
+	}
+	
+}
+.menu-search-form {}
+.footer .nav{
+float: none;
+width: 100%;
+	li {
+
+		a {
+
+			color: $white;
+			border-bottom: 5px solid transparent;
+			&:hover, &:focus {
+				text-decoration: underline;
+				
+			}
+		}
+
+	}
+	li.current-menu-item,
+	li.current_page_item,
+	li.current_page_ancestor {
+		border-bottom: 5px solid #00bd56;
+		a {color: $white;}
+
+	}  /* end current highlighters */
+}
 
 /*********************
 POSTS & CONTENT STYLES
@@ -266,18 +299,18 @@ POSTS & CONTENT STYLES
 			background-color: $pale-background;
 			border-radius: 3px;
 			margin-bottom: 1.5em;
-			border: none;
-			&.page{
-				background-color: $white;
+			border-bottom: 1px solid $light-gray;
+			.page &, .single &{
+				background-color: transparent;
 			}
 
 			header {
 				border-bottom: none;
-				padding: 1.5em;
+				padding: 0 1.5em;
 			}
 
 			footer {
-				padding: 1.5em;
+				padding: 0 1.5em;
 				border-top: none;
 
 				p {
@@ -515,15 +548,15 @@ CUSTOM CONTENT
 
 
 .ideabox {
-	background: rgba(90, 72, 89, 0.8);
-	 height: 4em;
+	background: $button-col;
+	 height: 6em;
     margin-top: -2em;
     padding: 0.5em;
     color: $white;
 	h3{
 		display: inline;
 		
-		font-size: 1.1em;
+		font-size: 0.9em;
 		a{color: $white;
 
 			&:hover, &:focus {
@@ -887,9 +920,16 @@ COMMENT FORM STYLES
 SIDEBARS & ASIDES
 *********************/
 
-.sidebar {}
-
-	.widgettitle {}
+.sidebar { margin-top: 0;}
+.sidebar > .widget{margin-top: 0;}
+	.widgettitle {				
+		margin-bottom: 0;
+		margin-top: 0;
+		padding: 0.5em 1em;
+		font-family: $robofont;
+		text-transform: uppercase;
+		color: #333;
+		font-weight: 500;}
 
 	.widget {
 
@@ -909,6 +949,10 @@ SIDEBARS & ASIDES
 				ul {}
 
 			}
+			.upw-content{ 
+				h4{margin-bottom: 0;}
+
+				}
 
 		}
 		header{padding: 0;}
@@ -918,26 +962,77 @@ SIDEBARS & ASIDES
 
 
 	}
-.homewidget{
-			background-color: #F7F7F7;
-		}
-#sidebar1 .widget {
-	li {
+.widget.homewidget{
+	
+	background-color: #F7F7F7;
+	 padding-bottom: 0.6em;
 
+	.widgettitle{
+		text-transform: none;
+		font-size: 1.7em;
+		font-weight: normal;
+		font-family: $headerfont;
+		padding-left: 8px;
+	}
+	.widgettitle:before {
+
+	    font-family: FontAwesome;
+	    font-weight: normal;
+	    font-style: normal;
+	    text-decoration: inherit;
+	    -webkit-font-smoothing: antialiased;
+	    *margin-right: .3em;
+		color: $fdsd-mauve;
+   		content: "\f12e";
+   		padding-right: 0.5em;
+
+	}
+	p , > div{padding: 0px 3em;}
+
+}
+.homeideas.widget.homewidget{padding: 0; background-color: transparent;}
+.homeideas.widget.homewidget p, .homeideas.widget.homewidget >div {padding: 0;}
+
+#homewidgetarea {
+	.home-news .entry-meta{text-transform: uppercase; font-size: 0.8em;}
+ 	.upw-posts h4.entry-title {font-size: 1.2em;}
+ 	.upw-posts article:last-child {   }
+}
+
+#sidebar1 .widget {
+	ul{margin-top: 0;padding-left: 1em;}
+	li {
+	padding-left: 1em;
 				/* fallback */
 		background-color: #ffffff;
 		background: url(image); background-repeat: repeat-x;
 		/* Safari 4-5, Chrome 1-9 */
-		background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#f2f8f2));
+		background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f2f8f2), to(#ffffff));
 		/* Safari 5.1, Chrome 10+ */
-		background: -webkit-linear-gradient(top, #ffffff, #f2f8f2);
+		background: -webkit-linear-gradient(top, #f2f8f2, #ffffff);
 		/* Firefox 3.6+ */
-		background: -moz-linear-gradient(top, #ffffff, #f2f8f2);
+		background: -moz-linear-gradient(top, #f2f8f2, #ffffff);
 		/* IE 10 */
-		background: -ms-linear-gradient(top, #ffffff, #f2f8f2);
+		background: -ms-linear-gradient(top, #f2f8f2, #ffffff);
 		/* Opera 11.10+ */
-		background: -o-linear-gradient(top, #ffffff, #f2f8f2); 
+		background: -o-linear-gradient(top, #f2f8f2, #ffffff);
 	}
+
+	&.widget_ultimate_posts li{
+		padding-left: 1em;
+	}
+
+	/*&.widget_ultimate_posts li:before{
+		font-family: FontAwesome;
+	    font-weight: normal;
+	    font-style: normal;
+	    text-decoration: inherit;
+	    -webkit-font-smoothing: antialiased;
+	    *margin-right: .3em;
+		color: $fdsd-mauve;
+   		content: "\f12e";
+   		padding-right: 0.5em;
+	}*/
 
 }
 
@@ -961,6 +1056,7 @@ FOOTER STYLES
 	clear: both;
 	background-color: $black;
 	color: $light-gray;
+
 }
 
 	/*
@@ -982,5 +1078,6 @@ FOOTER STYLES
 
 	} /* end .footer-links */
 
+#footerwidgets{clear: both; overflow: hidden;}
 
-	.copyright {}
+	.copyright {font-size: 0.7em}

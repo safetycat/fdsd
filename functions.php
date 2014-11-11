@@ -10,6 +10,7 @@ sidebars, comments, ect.
 
 // LOAD BONES CORE (if you remove this, the theme will break)
 require_once( 'library/bones.php' );
+//require_once( 'library/single-post-widget.php' );
 
 // CUSTOMIZE THE WORDPRESS ADMIN (off by default)
 // require_once( 'library/admin.php' );
@@ -67,14 +68,14 @@ add_action( 'after_setup_theme', 'bones_ahoy' );
 /************* OEMBED SIZE OPTIONS *************/
 
 if ( ! isset( $content_width ) ) {
-	$content_width = 640;
+	$content_width = 800;
 }
 
 /************* THUMBNAIL SIZE OPTIONS *************/
 
 // Thumbnail sizes
-add_image_size( 'bones-thumb-600', 600, 150, true );
-add_image_size( 'bones-thumb-300', 300, 100, true );
+//add_image_size( 'bones-thumb-600', 600, 150, true );
+//add_image_size( 'bones-thumb-300', 300, 100, true );
 add_image_size( 'idea-thumb', 378, 213, true );
 
 /*
@@ -173,7 +174,15 @@ function bones_register_sidebars() {
 		'before_title' => '<h4 class="widgettitle">',
 		'after_title' => '</h4>',
 	));
-	
+	 register_sidebar(array(
+    'id' => 'footer',
+    'name' => __( 'Footer', 'bonestheme' ),
+    'description' => __( 'The Footer Content area.', 'bonestheme' ),
+    'before_widget' => '<div id="%1$s" class="widget footwidget d-1of3 t-1of3 m-all %2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h4 class="widgettitle">',
+    'after_title' => '</h4>',
+  ));
 
 	/*
 	to add more sidebars or widgetized areas, just copy
@@ -255,7 +264,7 @@ function bones_fonts() {
   //wp_enqueue_style('googleFontsLato', 'http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic');
   wp_enqueue_style('googleFontsOSans', 'http://fonts.googleapis.com/css?family=Open+Sans');
   wp_enqueue_style('googleFontsRoboto', 'http://fonts.googleapis.com/css?family=Roboto:500');
-  
+  wp_enqueue_style('jasiastyle', get_template_directory_uri() . '/style.css');
 }
 
 add_action('wp_enqueue_scripts', 'bones_fonts');
@@ -276,7 +285,7 @@ add_action('wp_enqueue_scripts', 'bones_fonts');
 
 function webendev_load_font_awesome() {
 
-wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css', null, '4.0.1' );
+wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css', null, '4.2.0' );
  
 }
 
@@ -293,7 +302,7 @@ register_nav_menus( array(
 function add_search_to_wp_menu ( $items, $args ) {
   if( 'minitop' === $args -> theme_location ) {
 $items .= '<li class="menu-item menu-item-search">';
-$items .= '<form method="get" class="menu-search-form" action="' . get_bloginfo('home') . '/"><input class="text_input" type="text" value="Search" name="s" id="s" onfocus="if (this.value == \'Search\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \'Search\';}" /><input type="submit" class="my-wp-search" id="searchsubmit" value="search" /></form>';
+$items .= '<form method="get" class="menu-search-form" action="' . get_bloginfo('home') . '/"><input class="text_input" type="text" value="Search" name="s" id="s" onfocus="if (this.value == \'Search\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \'Search\';}" /><input type="submit" class="my-wp-search fa-search" id="searchsubmit" value="search"></input></form>';
 $items .= '</li>';
   }
 return $items;
@@ -444,5 +453,11 @@ function custom_search_groupby($groupby){
 /*add_filter('posts_where','custom_search_where');
 add_filter('posts_join', 'custom_search_join');
 add_filter('posts_groupby', 'custom_search_groupby');*/
+
+
+
+
+
+
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>

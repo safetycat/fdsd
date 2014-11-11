@@ -1,7 +1,12 @@
 			<footer class="footer" role="contentinfo">
 
 				<div id="inner-footer" class="wrap cf">
+					<div id="footerwidgets">
+	<?php if ( is_active_sidebar( 'footer' ) ) { ?>
 
+						<?php dynamic_sidebar( 'footer' ); }?>			
+
+					</div>
 					<nav role="navigation">
 						<?php wp_nav_menu(array(
     					'container' => '',                              // remove nav container
@@ -18,7 +23,7 @@
 						)); ?>
 					</nav>
 
-					<p class="source-org copyright">&copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?>.</p>
+					<p class="source-org copyright"> Foundation for Democracy and Sustainable Development / Charity Number 1101302 /.Registered in England and Wales / Company registration number 4869004 &copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?>.</p>
 
 				</div>
 

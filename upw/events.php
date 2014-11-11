@@ -20,15 +20,9 @@
 
     <?php $current_post = ($post->ID == $current_post_id && is_single()) ? 'current-post-item' : ''; ?>
 
-    <li class="<?php echo ($post->ID == $current_post_id && is_single())?'current-post-item':'' ?>">
+    <li class="upw-event <?php echo ($post->ID == $current_post_id && is_single())?'current-post-item':'' ?>">
 
-      <?php if (current_theme_supports('post-thumbnails') && $instance['show_thumbnail'] && has_post_thumbnail()) : ?>
-        <div class="upw-image">
-          <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-            <?php the_post_thumbnail($instance['thumb_size']); ?>
-          </a>
-        </div>
-      <?php endif; ?>
+    
 
       <div class="upw-content">
 	      
@@ -36,19 +30,23 @@
 	      
 	      <?php 
 		      
-		      $format = "F j, Y g:i a";
-				$timestamp= get_field($field_name);
-				echo date_i18n( $format, $timestamp); // November 6, 2010 12:50 am
-		      
+		      $format = "F j";
+				$timestamp= get_field('start');
+				//echo date_i18n( $format, $timestamp); // November 6, 2010 12:50 am
+		      $internal = get_field('fdsd_event');
+          
 		       ?>
 
 
         <?php if (get_the_title() && $instance['show_title']) : ?>
-          <p class="post-title">
+          <h4 class="post-title">
             <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-              <?php the_title(); ?>
+
+              <?php 
+              echo "<i class='fa fa-calendar'></i>";
+              the_title(); ?>
             </a>
-          </p>
+          </h4>
         <?php endif; ?>
 
         <?php if ($instance['show_date']) : ?>

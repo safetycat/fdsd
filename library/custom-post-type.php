@@ -30,7 +30,7 @@ function bones_flush_rewrite_rules() {
 	add_action( 'init', 'custom_post_publications');
 	add_action( 'init', 'custom_post_press');
 	add_action( 'init', 'custom_post_idea');
-
+	add_action( 'init', 'custom_post_link');
 
 
 // EVENT POST TYPE ///////////////////
@@ -63,7 +63,7 @@ function custom_post_events() {
 			'menu_position' => 7, /* this is what order you want it to appear in on the left hand side menu */ 
 			'menu_icon' => 'dashicons-calendar-alt', /* the icon for the custom post type menu */
 			'rewrite'	=> array( 'slug' => 'events', 'with_front' => false ), /* you can specify its url slug */
-			'has_archive' => 'event', /* you can rename the slug here */
+			'has_archive' => 'events', /* you can rename the slug here */
 			'capability_type' => 'post',
 			'hierarchical' => false,
 			/* the next one is important, it tells what's enabled in the post editor */
@@ -131,21 +131,21 @@ function custom_post_press() {
 	register_post_type( 'press', /* (http://codex.wordpress.org/Function_Reference/register_post_type) */
 		// let's now add all the options for this post type
 		array( 'labels' => array(
-			'name' => __( 'Press Items', 'bonestheme' ), /* This is the Title of the Group */
-			'singular_name' => __( 'Press Item', 'bonestheme' ), /* This is the individual type */
-			'all_items' => __( 'All Press Items', 'bonestheme' ), /* the all items menu item */
+			'name' => __( 'Press Releases', 'bonestheme' ), /* This is the Title of the Group */
+			'singular_name' => __( 'Press Release', 'bonestheme' ), /* This is the individual type */
+			'all_items' => __( 'All Press Releases', 'bonestheme' ), /* the all items menu item */
 			'add_new' => __( 'Add New', 'bonestheme' ), /* The add new menu item */
-			'add_new_item' => __( 'Add New Press Item', 'bonestheme' ), /* Add New Display Title */
+			'add_new_item' => __( 'Add New Press Release', 'bonestheme' ), /* Add New Display Title */
 			'edit' => __( 'Edit', 'bonestheme' ), /* Edit Dialog */
-			'edit_item' => __( 'Edit Press Items', 'bonestheme' ), /* Edit Display Title */
-			'new_item' => __( 'New Press Item', 'bonestheme' ), /* New Display Title */
-			'view_item' => __( 'View Press Item', 'bonestheme' ), /* View Display Title */
-			'search_items' => __( 'Search Press Items', 'bonestheme' ), /* Search Custom Type Title */ 
+			'edit_item' => __( 'Edit Press Releases', 'bonestheme' ), /* Edit Display Title */
+			'new_item' => __( 'New Press Release', 'bonestheme' ), /* New Display Title */
+			'view_item' => __( 'View Press Release', 'bonestheme' ), /* View Display Title */
+			'search_items' => __( 'Search Press Releases', 'bonestheme' ), /* Search Custom Type Title */ 
 			'not_found' =>  __( 'Nothing found in the Database.', 'bonestheme' ), /* This displays if there are no entries yet */ 
 			'not_found_in_trash' => __( 'Nothing found in Trash', 'bonestheme' ), /* This displays if there is nothing in the trash */
 			'parent_item_colon' => ''
 			), /* end of arrays */
-			'description' => __( 'Press Items by or relating to FDSD', 'bonestheme' ), /* Custom Type Description */
+			'description' => __( 'Press Releases from FDSD', 'bonestheme' ), /* Custom Type Description */
 			'public' => true,
 			'publicly_queryable' => true,
 			'exclude_from_search' => false,
@@ -214,7 +214,47 @@ function custom_post_idea() {
 	
 }
 
+// IDEAS IN ACTION POST TYPE ////////////////////
+// let's create the function for the custom type
+function custom_post_link() { 
+	// creating (registering) the custom type 
+	register_post_type( 'link', /* (http://codex.wordpress.org/Function_Reference/register_post_type) */
+		// let's now add all the options for this post type
+		array( 'labels' => array(
+			'name' => __( 'Links', 'bonestheme' ), /* This is the Title of the Group */
+			'singular_name' => __( 'Link', 'bonestheme' ), /* This is the individual type */
+			'all_items' => __( 'All Links', 'bonestheme' ), /* the all items menu item */
+			'add_new' => __( 'Add New', 'bonestheme' ), /* The add new menu item */
+			'add_new_item' => __( 'Add New Link', 'bonestheme' ), /* Add New Display Title */
+			'edit' => __( 'Edit', 'bonestheme' ), /* Edit Dialog */
+			'edit_item' => __( 'Edit Link', 'bonestheme' ), /* Edit Display Title */
+			'new_item' => __( 'New Link', 'bonestheme' ), /* New Display Title */
+			'view_item' => __( 'View Link', 'bonestheme' ), /* View Display Title */
+			'search_items' => __( 'Search Links', 'bonestheme' ), /* Search Custom Type Title */ 
+			'not_found' =>  __( 'Nothing found in the Database.', 'bonestheme' ), /* This displays if there are no entries yet */ 
+			'not_found_in_trash' => __( 'Nothing found in Trash', 'bonestheme' ), /* This displays if there is nothing in the trash */
+			'parent_item_colon' => ''
+			), /* end of arrays */
+			'description' => __( 'Links', 'bonestheme' ), /* Custom Type Description */
+			'public' => true,
+			'publicly_queryable' => true,
+			'exclude_from_search' => false,
+			'show_ui' => true,
+			'query_var' => true,
+			'menu_position' => 5, /* this is what order you want it to appear in on the left hand side menu */ 
+			'menu_icon' => 'dashicons-admin-links', /* the icon for the custom post type menu */
+			'rewrite'	=> array( 'slug' => 'links', 'with_front' => false ), /* you can specify its url slug */
+			'has_archive' => 'links', /* you can rename the slug here */
+			'capability_type' => 'post',
+			'hierarchical' => false,
+			/* the next one is important, it tells what's enabled in the post editor */
+			'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'comments', 'revisions', 'sticky')
+		) /* end of options */
+	); /* end of register post type */
 
+	
+	
+}
 
 	/*
 	for more information on taxonomies, go here:

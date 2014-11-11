@@ -24,20 +24,21 @@ http://www.youtube.com/watch?v=hwdVpKiJzac
 
 *********************/
 
-%btn {
+%btn, #searchsubmit {
   display: inline-block;
   position: relative;
   font-family: $sans-serif;
   text-decoration: none;
   color: $white;
-  font-size: 0.9em;
+  font-size: 1em;
   
-  line-height: 34px;
+  line-height: 1.5em;
   font-weight: normal;
   padding: 0 24px;
 
   border: 0;
   cursor: pointer;
+  text-transform: uppercase;
   @include transition(background-color 0.14s ease-in-out);
 
   // hovering on the btn
@@ -58,6 +59,11 @@ An example button.
 You can use this example if you want. Just replace all the variables
 and it will create a button dependant on those variables.
 */
+#searchsubmit, .submit {
+   @extend %btn;
+   background-color: $dark-gray
+}
+
 .blue-btn {
   @extend %btn; // here we load the btn defaults
   background-color: $blue;
@@ -75,8 +81,17 @@ and it will create a button dependant on those variables.
 
 .btn {
   @extend %btn; // here we load the btn defaults
-  bcolor: $white;
+  color: $white;
   background-color: $button-col;
+
+  text-transform: none;
+    a, a:visited{
+      color: $white;
+      text-decoration: none;
+      &:hover, &:focus { 
+          color: $light-gray;
+      }
+    }
 
   &:hover,
   &:focus {
@@ -89,19 +104,11 @@ and it will create a button dependant on those variables.
 
 } // end general button
 
-.downl-btn {
-  @extend %btn; // here we load the btn defaults
-  bcolor: $white;
-  background-color: $button-col;
+.pub-meta.tax-topics{
 
-  &:hover,
-  &:focus {
-    background-color: darken($button-col, 4%);
-  } // end hover
-
-  &:active {
-    background-color: darken($button-col, 5%);
-  } // end active
-
-} // end general button
-
+  a, a:visited{
+        background-color: $fdsd-mauve;
+  }
+  
+}
+  

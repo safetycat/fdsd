@@ -51,8 +51,11 @@
                   <?php
 
                     if('idea' == get_post_type()){
-                      the_post_thumbnail('large');
-                  }
+                      $title = get_post(get_post_thumbnail_id())->post_title; 
+                      //the_post_thumbnail('large');
+                       //$title = get_post(get_post_thumbnail_id())->post_title; 
+                      //the_post_thumbnail( 'large', array('title' => the_title_attribute() ));
+                  }the_post_thumbnail( 'large', array( 'title' => $title ) ); 
 
 
                     // the content (pretty self explanatory huh)

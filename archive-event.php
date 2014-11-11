@@ -20,28 +20,39 @@
 
 						<div id="main" class="m-all t-2of3 d-5of7 cf" role="main">
 
-						<h1 class="archive-title h2"><i class="fa fa-calendar"></i><?php post_type_archive_title(); ?></h1>
+						<h1 class="archive-title"><i class="fa fa-calendar"></i><?php post_type_archive_title(); ?></h1>
 
 						<?php
 						// Only show posts with start date in the future
 						// order with first up first...
 
-						$today = get_the_time('U');
-						$args = array(
-							'post_type'		=> 'event',
-							'posts_per_page'	=> -1,
-							'meta_key'		=> 'start',
-							   'meta_value' => $today,
-						   'meta_compare' => '>=',
-							'orderby'		=> 'meta_value_num',
-							'order'			=> 'ASC',
+						
+					//global $wp_query;
+					//$argss = array_merge( $wp_query->query_vars, array( 'post_type' => 'event' ) );
+					//query_posts( $args );
 
 
-						);
+						if ( !is_year()){
+							$status = "future";
 
-						$posts = query_posts($args); 
+						} else { $status = "publish,future";}
+
+						//print_r($wp_query->query_vars);
+
+						// $args = array_merge( $wp_query->query_vars, array(
+						// 	'post_status' => array('future'),
+						// 	'post_type'		=> 'event',
+						// 	'posts_per_page'	=> -1,
+							
+						// 	'order'			=> 'ASC',
 
 
+						// ));
+
+						//$posts = query_posts($args); 
+
+						global $query_string;
+						$posts = query_posts( $query_string . '&post_type=event&order=ASC&post_status=' . $status  );
 
 						?>
 
@@ -53,12 +64,9 @@
 
 									<h3 class="h2"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
 									<p class="byline vcard">
-										Date: <?php
-										$format = "l, F jS, Y";
-										$timestamp” = get_field("start");
-										echo date_i18n( $format, $timestamp” );
-										//printf( __( 'Posted <time class="updated" datetime="%1$s" pubdate>%2$s</time> by <span class="author">%3$s</span>', 'bonestheme' ), get_the_time( 'Y-m-j' ), get_the_time( __( 'F jS, Y', 'bonestheme' ) ), get_author_posts_url( get_the_author_meta( 'ID' ) ));
-									?></p>
+										Date: <?php echo get_post_time('F jS, Y'); ?>									
+										
+									</p>
 
 								</header>
 

@@ -36,7 +36,7 @@ if ( $query->have_posts() )
 
 			<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 
-			<p class="byline vcard">
+			
                     <?php 
                     
                     $years = get_the_term_list( $post->ID, 'pub_year', 'Published: ', ', ' ); 
@@ -48,13 +48,8 @@ if ( $query->have_posts() )
 
                     ?>
                   
-                  </p>
+                 
 		</header>
-
-			
-
-			<?php the_excerpt(); ?>
-
 
 			<?php 
 				if ( has_post_thumbnail() ) {
@@ -62,13 +57,20 @@ if ( $query->have_posts() )
 					the_post_thumbnail("small");
 					echo '</p>';
 				}
-			?>
+			?>			
+
+			<?php the_excerpt(); ?>
+
+
+				<span class="readmore btn"><a href="<?php the_permalink(); ?>">Read More <i class='fa fa-caret-right' ></i></a></span>
+
+
 
 
 			<?php  // Download - can be multiple
                   if( have_rows('download') ):
                       while ( have_rows('download') ) : the_row();
-                        echo ("<div class='downl-btn'><a href='" . get_sub_field('document') . "' >Download</a></div>");
+                        echo ("<div class='btn'><a href='" . get_sub_field('document') . "' >Download <i class='fa fa-download' ></i></a></div>");
                         //the_sub_field('document');
                       endwhile;
                   endif;
@@ -78,8 +80,6 @@ if ( $query->have_posts() )
 			<p><small><?php the_date(); ?></small><p> -->
 
 
-
-				<span class="readmore"><a href="<?php the_permalink(); ?>">Read More</a></span>
 			
 
 			 
