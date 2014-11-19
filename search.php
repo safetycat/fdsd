@@ -19,7 +19,7 @@
 								</header>
 
 								<section class="entry-content">
-										<?php the_excerpt( '<span class="read-more">' . __( 'Read more &raquo;', 'bonestheme' ) . '</span>' ); ?>
+										<?php echo get_the_excerpt( '<span class="read-more">' . __( 'Read more &raquo;', 'bonestheme' ) . '</span>' ); ?>
 
 								</section>
 
@@ -29,7 +29,7 @@
                   					<?php printf( __( 'Filed under: %1$s', 'bonestheme' ), get_the_category_list(', ') ); ?>
                   					<?php endif; ?>
 
-                 					<?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
+                 					<?php the_tags( '<div class="tags"><span class="tags-title">' . __( 'Keywords:', 'bonestheme' ) . '</span> ', ', ', '</div>' ); ?>
 
 								</footer> <!-- end article footer -->
 
@@ -49,7 +49,7 @@
 											<p><?php _e( 'Try your search again.', 'bonestheme' ); ?></p>
 										</section>
 										<footer class="article-footer">
-												<p><?php _e( 'This is the error message in the search.php template.', 'bonestheme' ); ?></p>
+												
 										</footer>
 									</article>
 

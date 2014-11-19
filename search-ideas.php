@@ -26,11 +26,11 @@
 								</header>
 
 								<section class="entry-content">
-										<?php the_excerpt( '<span class="read-more">' . __( 'Read more &raquo;', 'bonestheme' ) . '</span>' ); ?>
+										<?php echo get_the_excerpt( '<span class="read-more">' . __( 'Read more &raquo;', 'bonestheme' ) . '</span>' ); ?>
 										<?php // Links
 						                    if( have_rows('link') ):
 						                      while ( have_rows('link') ) : the_row();
-						                        echo ("<div class='link-btn'><i class='fa fa-external-link'></i><a href='" . get_sub_field('url') . "' >" . get_sub_field('url') . "</a></div>");
+						                        echo ("<div class='link-btn'><a href='" . get_sub_field('url') . "' >" . get_sub_field('url') . "</a></div>");
 						                        //the_sub_field('document');
 						                      endwhile;
 						                  endif;
@@ -43,13 +43,13 @@
                   					<?php printf( __( 'Filed under: %1$s', 'bonestheme' ), get_the_category_list(', ') ); ?>
                   					<?php endif; ?>
 
-                 					<?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
+                 					<?php the_tags( '<div class="tags"><span class="tags-title">' . __( 'Keywords:', 'bonestheme' ) . '</span> ', ', ', '</div>' ); ?>
 
                  					<?php 
-                 					$topics = get_the_term_list( $post->ID, 'topics', 'Topics: ', ', ' ); 
+                 					$topics = get_the_term_list( $post->ID, 'topics', 'Topics: ', ' ' ); 
 							 		echo ("<div class='pub-meta tax-topics'>" . $topics . "</div>");
 
-							 		$themes = get_the_term_list( $post->ID, 'themes', 'Themes: ', ', ' ); 
+							 		$themes = get_the_term_list( $post->ID, 'themes', 'Themes: ', ' ' ); 
 							 		echo ("<div class='pub-meta tax-themes'>" . $themes . "</div>");
 
 							 		

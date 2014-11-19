@@ -51,7 +51,16 @@
 
 								</footer>
 
-								<?php //comments_template(); ?>
+								<?php 
+
+								// Show comments on the pages with these IDs
+								// you can add any in there.
+								if (is_page(array(494,492,490,488,486))){
+
+									comments_template();
+								}
+
+								// ?>
 
 							</article>
 
@@ -73,7 +82,11 @@
 
 						</div>
 
-						<?php get_sidebar(); ?>
+						<?php 
+
+						
+
+						get_sidebar(); ?>
 
 				</div>
 

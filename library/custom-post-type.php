@@ -46,7 +46,7 @@ function custom_post_events() {
 			'add_new' => __( 'Add New', 'bonestheme' ), /* The add new menu item */
 			'add_new_item' => __( 'Add New Event', 'bonestheme' ), /* Add New Display Title */
 			'edit' => __( 'Edit', 'bonestheme' ), /* Edit Dialog */
-			'edit_item' => __( 'Edit Events', 'bonestheme' ), /* Edit Display Title */
+			'edit_item' => __( 'Edit Event', 'bonestheme' ), /* Edit Display Title */
 			'new_item' => __( 'New Event', 'bonestheme' ), /* New Display Title */
 			'view_item' => __( 'View Event', 'bonestheme' ), /* View Display Title */
 			'search_items' => __( 'Search Event', 'bonestheme' ), /* Search Custom Type Title */ 
@@ -93,7 +93,7 @@ function custom_post_publications() {
 			'add_new' => __( 'Add New', 'bonestheme' ), /* The add new menu item */
 			'add_new_item' => __( 'Add New Publication', 'bonestheme' ), /* Add New Display Title */
 			'edit' => __( 'Edit', 'bonestheme' ), /* Edit Dialog */
-			'edit_item' => __( 'Edit Publications', 'bonestheme' ), /* Edit Display Title */
+			'edit_item' => __( 'Edit Publication', 'bonestheme' ), /* Edit Display Title */
 			'new_item' => __( 'New Publication', 'bonestheme' ), /* New Display Title */
 			'view_item' => __( 'View Publication', 'bonestheme' ), /* View Display Title */
 			'search_items' => __( 'Search Publications', 'bonestheme' ), /* Search Custom Type Title */ 
@@ -137,7 +137,7 @@ function custom_post_press() {
 			'add_new' => __( 'Add New', 'bonestheme' ), /* The add new menu item */
 			'add_new_item' => __( 'Add New Press Release', 'bonestheme' ), /* Add New Display Title */
 			'edit' => __( 'Edit', 'bonestheme' ), /* Edit Dialog */
-			'edit_item' => __( 'Edit Press Releases', 'bonestheme' ), /* Edit Display Title */
+			'edit_item' => __( 'Edit Press Release', 'bonestheme' ), /* Edit Display Title */
 			'new_item' => __( 'New Press Release', 'bonestheme' ), /* New Display Title */
 			'view_item' => __( 'View Press Release', 'bonestheme' ), /* View Display Title */
 			'search_items' => __( 'Search Press Releases', 'bonestheme' ), /* Search Custom Type Title */ 
@@ -214,28 +214,28 @@ function custom_post_idea() {
 	
 }
 
-// IDEAS IN ACTION POST TYPE ////////////////////
+// What we are reading (LINK) POST TYPE ////////////////////
 // let's create the function for the custom type
 function custom_post_link() { 
 	// creating (registering) the custom type 
 	register_post_type( 'link', /* (http://codex.wordpress.org/Function_Reference/register_post_type) */
 		// let's now add all the options for this post type
 		array( 'labels' => array(
-			'name' => __( 'Links', 'bonestheme' ), /* This is the Title of the Group */
-			'singular_name' => __( 'Link', 'bonestheme' ), /* This is the individual type */
-			'all_items' => __( 'All Links', 'bonestheme' ), /* the all items menu item */
+			'name' => __( 'What we are reading', 'bonestheme' ), /* This is the Title of the Group */
+			'singular_name' => __( 'What we are reading Link', 'bonestheme' ), /* This is the individual type */
+			'all_items' => __( 'All What we are reading Links', 'bonestheme' ), /* the all items menu item */
 			'add_new' => __( 'Add New', 'bonestheme' ), /* The add new menu item */
-			'add_new_item' => __( 'Add New Link', 'bonestheme' ), /* Add New Display Title */
+			'add_new_item' => __( 'Add New What we are reading Link', 'bonestheme' ), /* Add New Display Title */
 			'edit' => __( 'Edit', 'bonestheme' ), /* Edit Dialog */
-			'edit_item' => __( 'Edit Link', 'bonestheme' ), /* Edit Display Title */
-			'new_item' => __( 'New Link', 'bonestheme' ), /* New Display Title */
-			'view_item' => __( 'View Link', 'bonestheme' ), /* View Display Title */
-			'search_items' => __( 'Search Links', 'bonestheme' ), /* Search Custom Type Title */ 
+			'edit_item' => __( 'Edit What we are reading Link', 'bonestheme' ), /* Edit Display Title */
+			'new_item' => __( 'New What we are reading Link', 'bonestheme' ), /* New Display Title */
+			'view_item' => __( 'View What we are reading Link', 'bonestheme' ), /* View Display Title */
+			'search_items' => __( 'Search What we are reading Links', 'bonestheme' ), /* Search Custom Type Title */ 
 			'not_found' =>  __( 'Nothing found in the Database.', 'bonestheme' ), /* This displays if there are no entries yet */ 
 			'not_found_in_trash' => __( 'Nothing found in Trash', 'bonestheme' ), /* This displays if there is nothing in the trash */
 			'parent_item_colon' => ''
 			), /* end of arrays */
-			'description' => __( 'Links', 'bonestheme' ), /* Custom Type Description */
+			'description' => __( 'What we are reading Links', 'bonestheme' ), /* Custom Type Description */
 			'public' => true,
 			'publicly_queryable' => true,
 			'exclude_from_search' => false,
@@ -244,7 +244,7 @@ function custom_post_link() {
 			'menu_position' => 5, /* this is what order you want it to appear in on the left hand side menu */ 
 			'menu_icon' => 'dashicons-admin-links', /* the icon for the custom post type menu */
 			'rewrite'	=> array( 'slug' => 'links', 'with_front' => false ), /* you can specify its url slug */
-			'has_archive' => 'links', /* you can rename the slug here */
+			'has_archive' => 'what-are-we-reading', /* you can rename the slug here */
 			'capability_type' => 'post',
 			'hierarchical' => false,
 			/* the next one is important, it tells what's enabled in the post editor */

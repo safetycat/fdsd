@@ -1,7 +1,7 @@
 
               <?php
                 /*
-                 * This is the default post format.
+                 * This is the default post content.
                  *
                  * So basically this is a regular post. if you don't want to use post formats,
                  * you can just copy ths stuff in here and replace the post format thing in
@@ -28,11 +28,25 @@
 
                     
                     ?>
+
+                      <?php $internal = ( get_post_meta($post->ID, 'fdsd_event', TRUE) ); 
+                  if ($internal[0] == "Yes"){ 
+                    $add = "fdsd-event";
+                  } else{ $add = "external-event";}
+                  ?>
+
+
                    
-                  <h1 class="entry-title single-title" itemprop="headline"><?php the_title(); ?></h1>
+                  <h1 class="entry-title single-title <?php echo $add ?>" itemprop="headline"><?php the_title(); ?></h1>
 
                   <p class="byline vcard">
                     <?php 
+                    $posttype =get_post_type();
+                    if ( 'post' == $posttype || 'event' == $posttype ) {  
+                        
+                        echo 'Date: ' .  get_post_time('F jS, Y'); 
+                        
+                  } 
                     
                     $years = get_the_term_list( $post->ID, 'pub_year', 'Published: ', ', ' ); 
                     echo ("<div class='pub-meta tax-years'>" . $years . "</div>");
@@ -40,6 +54,11 @@
                     $authors = get_the_term_list( $post->ID, 'authors', 'Author(s): ', ', ' ); 
                     echo ("<div class='pub-meta tax-authors'>" . $authors . "</div>");
 
+                    $topics = get_the_term_list( $post->ID, 'topics', 'Topics: ', ' ' ); 
+                    echo ("<div class='pub-meta tax-topics'>" . $topics . "</div>");
+
+                    $themes = get_the_term_list( $post->ID, 'themes', 'Themes: ', ' ' ); 
+                    echo ("<div class='pub-meta tax-themes'>" . $themes . "</div>");
 
                     ?>
                   
@@ -77,7 +96,7 @@
                     // Links
                     if( have_rows('link') ):
                       while ( have_rows('link') ) : the_row();
-                        echo ("<div class='link-btn'><i class='fa fa-external-link'></i><a href='" . get_sub_field('url') . "' >" . get_sub_field('url') . "</a></div>");
+                        echo ("<div class='link-btn'><a href='" . get_sub_field('url') . "' >" . get_sub_field('url') . "</a></div>");
                         //the_sub_field('document');
                       endwhile;
                   endif;
@@ -87,7 +106,7 @@
                   // Download - can be multiple
                   if( have_rows('download') ):
                       while ( have_rows('download') ) : the_row();
-                        echo ("<div class='downl-btn'><a href='" . get_sub_field('document') . "' >Download</a></div>");
+                        echo ("<div class='btn downl-btn'><a href='" . get_sub_field('document') . "' >Download</a></div>");
                         //the_sub_field('document');
                       endwhile;
                   endif;
@@ -98,21 +117,20 @@
                 <footer class="article-footer">
 
                   <?php 
+                    echo ("<div class='url'><a href='" . get_field('url')  . "'>" . get_field('url') . "</a>");
 
 
-                    $topics = get_the_term_list( $post->ID, 'topics', 'Topics: ', ', ' ); 
-                    echo ("<div class='pub-meta tax-topics'>" . $topics . "</div>");
-
-                    $themes = get_the_term_list( $post->ID, 'themes', 'Themes: ', ', ' ); 
-                    echo ("<div class='pub-meta tax-themes'>" . $themes . "</div>");
 
                    ?>
 
-                  <?php //the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
+                  <?php the_tags( '<div class="tags"><span class="tags-title">' . __( 'Keywords:', 'bonestheme' ) . '</span> ', ' ', '</div>' ); ?>
 
                 </footer> <?php // end article footer ?>
 
-                <?php if('idea' != get_post_type()){
+                <?php // Add comments to 'post' post type (ie news & comments) OR ones that have the publication type 'provocation' or  'report'.
+                      // If you need to add another publication type, you can add to the array. (use the slug)
+
+                if('post' == get_post_type() || has_term( array( 'provocation', 'report' ), 'publication_type' )  ){
                   comments_template();
                   }
                    ?>

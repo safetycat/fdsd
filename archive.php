@@ -43,11 +43,12 @@
 									<h1 class="archive-title">
 										<?php single_cat_title(); ?>
 									</h1>
-							<?php } 
+							<?php } elseif (is_post_type_archive()) { ?>
+									<h1 class="archive-title">
+									<?php post_type_archive_title(); ?>
 
-
-
-							?>
+									</h1>
+							<?php  } ?>
 
 							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
@@ -56,17 +57,21 @@
 								<header class="article-header">
 
 									<h3 class="h2 entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
-									<p class="byline vcard"><?php
-										printf(__( 'Posted', 'bonestheme' ) . ' <time class="updated" datetime="%1$s" pubdate>%2$s</time> ' . __('by', 'bonestheme' ) . ' <span class="author">%3$s</span> <span class="amp">&</span> ' . __('filed under', 'bonestheme') .  ' %4$s.', get_the_time('Y-m-j'), get_the_time(__( 'F jS, Y', 'bonestheme' )), get_the_author_link( get_the_author_meta( 'ID' ) ), get_the_category_list(', '));
-									?></p>
-
+										<?php if ( 'post' == get_post_type() ) {  ?>
+												<p class="byline vcard">
+												Date: <?php echo get_post_time('F jS, Y'); ?>	
+												</p>
+									<?php } ?>
+																	
+										
+									
 								</header>
 
 								<section class="entry-content cf">
 									
-									<?php the_post_thumbnail( 'bones-thumb-300' ); ?>
+									<?php the_post_thumbnail( 'medium' ); ?>
 
-									<?php the_excerpt(); ?>
+									<?php echo get_the_excerpt( ); ?>
 
 								</section>
 

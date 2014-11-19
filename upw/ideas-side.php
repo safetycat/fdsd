@@ -19,19 +19,32 @@
 
 <?php
 
+$theme = get_idea_theme($current_post_id);
+
 
 $args = array_merge( $upw_query->query_vars, array(
+
      'meta_query' => array(
                         array(
                           'key'     => 'featured_idea',
                           'value'   => 'featured',
-                          'compare' => 'LIKE',
-                        ),
+                          'compare' => 'LIKE' )
                       ),
 
- ));
+          
+    'tax_query' => array(
+            array(
+                'taxonomy'  => 'themes',
+                'field'     => 'id',
+                'terms'     => $theme,
+                'operator'  => 'IN' )                  
 
+                ) // end tax query
 
+    ) // end our array
+);
+
+//print_r($args);
 $upw_query = new WP_Query($args);
 
 ?>
@@ -42,7 +55,7 @@ $upw_query = new WP_Query($args);
 
         <?php $current_post = ($post->ID == $current_post_id && is_single()) ? 'active' : ''; ?>
 
-        <article <?php post_class(array($current_post, 'm-all', 'd-1of2', 't-1of2')); ?> >
+        <article <?php post_class(array($current_post)); ?> >
 
           <header>
 

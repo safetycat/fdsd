@@ -12,7 +12,7 @@
 
 								<header class="article-header">
 
-									<h1 class="page-title" itemprop="headline"><i class='fa fa-leaf'></i><?php the_title(); ?></h1>
+									<h1 class="page-title" itemprop="headline"><?php the_title(); ?></h1>
 
 								</header> <?php // end article header ?>
 
@@ -36,6 +36,7 @@
 										echo "<div id='ideas_grid' > ";
 										$args = array(
 											'post_type'  => 'idea',
+											'posts_per_page' => 9,
 											'meta_query' => array(
 												array(
 													'key'     => 'featured_idea',
@@ -49,12 +50,13 @@
 										// The 2nd Loop
 										while ( $query2->have_posts() ) {
 											$query2->next_post();
-											echo '<li class="d-1of3 t-1of3 .m-all">';
-											echo get_the_post_thumbnail($query2->post->ID, 'idea-thumb' );
-											echo "<div class='ideabox'><i class='fa fa-leaf'></i>";
-											echo "<h3 class=''><a href='" . get_permalink($query2->post->ID ) . "'>" . get_the_title( $query2->post->ID ) . "</a></h3>";
+											$query2_id = $query2->post->ID;
+											echo '<li class="d-1of3 t-1of3 m-all"><a href="' . get_permalink($query2_id ) . '">';
+											echo get_the_post_thumbnail($query2_id, 'idea-thumb' );
+											echo "</a><div class='ideabox'>";
+											echo "<h3 class=''><a href='" . get_permalink($query2_id ) . "'>" . get_the_title( $query2_id ) . "</a></h3>";
 											echo '</div></li>';
-											$featured = get_post_meta($query2->post->ID, 'featured_idea', true);
+											$featured = get_post_meta($query2_id, 'featured_idea', true);
 											//print_r($featured[0]);
 										}
 

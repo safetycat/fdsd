@@ -51,8 +51,8 @@ if(is_page('ideas-in-action')){
   $args = array(
  // 'id_form'           => 'commentform',
  // 'id_submit'         => 'submit',
-  'title_reply'       => __( '<i class="fa fa-comments"></i>Get in Touch' ),
-
+  'title_reply'       => __( 'Get in Touch' ),
+  'comment_notes_after' => "",
   'fields' => apply_filters( 'comment_form_default_fields', array(
 
     'author' =>

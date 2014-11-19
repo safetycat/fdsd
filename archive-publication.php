@@ -39,7 +39,7 @@
 
 								<section class="entry-content cf">
 
-									<?php the_excerpt(); ?>
+									<?php echo get_the_excerpt(); ?>
 
 								</section>
 

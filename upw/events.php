@@ -12,6 +12,17 @@
   </div>
 <?php endif; ?>
 
+<?php
+$args = array_merge( $upw_query->query_vars, array(
+     'post_status' => 'future'
+
+ ));
+$upw_query = new WP_Query($args);
+?>
+
+
+
+
 <?php if ($upw_query->have_posts()) : ?>
 
   <ul>
@@ -43,7 +54,7 @@
             <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 
               <?php 
-              echo "<i class='fa fa-calendar'></i>";
+              
               the_title(); ?>
             </a>
           </h4>

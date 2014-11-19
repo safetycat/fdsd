@@ -20,7 +20,7 @@
 
 						<div id="main" class="m-all t-2of3 d-5of7 cf" role="main">
 
-						<h1 class="archive-title"><i class="fa fa-calendar"></i><?php post_type_archive_title(); ?></h1>
+						<h1 class="archive-title"><?php post_type_archive_title(); ?></h1>
 
 						<?php
 						// Only show posts with start date in the future
@@ -58,7 +58,13 @@
 
 							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-							<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article">
+							<?php $internal = ( get_post_meta($post->ID, 'fdsd_event', TRUE) ); 
+									if ($internal[0] == "Yes"){ 
+										$add = "fdsd-event";
+									} else{ $add = "external-event";}
+									?>
+
+							<article id="post-<?php the_ID(); ?>" <?php post_class( array ('cf', $add)); ?> role="article">
 
 								<header class="article-header">
 
@@ -72,7 +78,7 @@
 
 								<section class="entry-content cf">
 
-									<?php the_excerpt( '<span class="read-more">' . __( 'Read more &raquo;', 'bonestheme' ) . '</span>' ); ?>
+									<?php echo get_the_excerpt(  ); ?>
 									
 									
 								</section>

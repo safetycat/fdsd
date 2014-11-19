@@ -12,10 +12,7 @@ if ( $query->have_posts() )
 	?>
 	
 	Found <?php echo $query->found_posts; ?> Results<br />
-	Page <?php echo $query->query['paged']; ?> of <?php echo $query->max_num_pages; ?><br />
 	
-	<?php sf_pagination_prev_next($query->query['paged'], $query->max_num_pages); ?><br />
-	<?php sf_pagination_numbers($query->query['paged'], $query->max_num_pages, " "); ?>
 
 	<?php
 	while ($query->have_posts())
@@ -44,55 +41,15 @@ if ( $query->have_posts() )
 
                     $authors = get_the_term_list( $post->ID, 'authors', 'Author(s): ', ', ' ); 
                     echo ("<div class='pub-meta tax-authors'>" . $authors . "</div>");
-
-
-                    ?>
-                  
-                 
-		</header>
-
-			<?php 
-				if ( has_post_thumbnail() ) {
-					echo '<p>';
-					the_post_thumbnail("small");
-					echo '</p>';
-				}
-			?>			
-
-			<?php the_excerpt(); ?>
-
-
-				<span class="readmore btn"><a href="<?php the_permalink(); ?>">Read More <i class='fa fa-caret-right' ></i></a></span>
-
-
-
-
-			<?php  // Download - can be multiple
-                  if( have_rows('download') ):
-                      while ( have_rows('download') ) : the_row();
-                        echo ("<div class='btn'><a href='" . get_sub_field('document') . "' >Download <i class='fa fa-download' ></i></a></div>");
-                        //the_sub_field('document');
-                      endwhile;
-                  endif;
- ?>
-
-			<!-- <p><?php the_tags(); ?><p>
-			<p><small><?php the_date(); ?></small><p> -->
-
-
-			
-
-			 
-				<?php
 				 	
 
-				 		$topics = get_the_term_list( $post->ID, 'topics', 'Topics: ', ', ' ); 
+				 		$topics = get_the_term_list( $post->ID, 'topics', 'Topics: ', ' ' ); 
 				 		echo ("<div class='pub-meta tax-topics'>" . $topics . "</div>");
 
-				 		$themes = get_the_term_list( $post->ID, 'themes', 'Themes: ', ', ' ); 
+				 		$themes = get_the_term_list( $post->ID, 'themes', 'Themes: ', ' ' ); 
 				 		echo ("<div class='pub-meta tax-themes'>" . $themes . "</div>");
 
-				 		echo "</div>";
+				 		
 
 
 
@@ -100,6 +57,35 @@ if ( $query->have_posts() )
 			?>
 
 
+                 
+		</header>
+
+			
+
+			<?php echo get_the_excerpt( ); ?>
+
+				
+
+
+
+
+			<?php  // Download - can be multiple
+                  if( have_rows('download') ):
+                      while ( have_rows('download') ) : the_row();
+                        echo ("<div class='btn downl-btn'><a href='" . get_sub_field('document') . "' >Download </a></div>");
+                        //the_sub_field('document');
+                      endwhile;
+                  endif;
+ ?>
+
+			<?php the_tags('<div class="tags"><span class="tags-title">' . __( 'Keywords:', 'bonestheme' ) . '</span> ', ', ', '</div>' ); ?>
+		<!-- 	<p><small><?php the_date(); ?></small><p> -->
+
+
+			
+
+			 
+				
 		</article>
 		
 		

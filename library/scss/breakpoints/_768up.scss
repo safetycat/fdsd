@@ -16,9 +16,10 @@ come into play. Have fun!
 /*********************
 GENERAL STYLES
 *********************/
-
-body {}
-
+body {
+	
+	font-size: 100%;
+}
 /*********************
 LAYOUT & GRID STYLES
 *********************/
@@ -27,13 +28,20 @@ LAYOUT & GRID STYLES
 	width: 760px;
 }
 
+.homeideas .hentry{
+
+	:nth-child(2)  {
+		padding-right: 0;
+		padding-left: 0.75em;
+	}
+}
 /*********************
 HEADER STYLES
 *********************/
 
 .header {}
 
-	#logo {width: 50%}
+	#logo {width: 50%; float: left;}
 	#site-desc{display: inline-block;
 		font-size: 0.8em;
     	width: 40%;
@@ -44,7 +52,8 @@ HEADER STYLES
 /*********************
 NAVIGATION STYLES
 *********************/
-
+#responsivemenu {display: none;}
+#fullmenu{display: block;}
 .nav {
 	border: 0;
 	border-top: $light-gray solid 1px;
@@ -87,13 +96,13 @@ NAVIGATION STYLES
 			z-index: 8999;
 
 			li {
-
+					border-bottom: 1px solid #ccc;
 				a {
 					padding-left: 10px;
 					border-right: 0;
 					display: block;
 					width: 280px;
-					border-bottom: 1px solid #ccc;
+				
 
 					&:hover,
 					&:focus {}
@@ -125,7 +134,7 @@ NAVIGATION STYLES
 			li.current-menu-item,
 			li.current_page_item,
 			li.current_page_ancestor {
-				
+				border-bottom: 2px solid #00bd56;
 				a {}
 			}
 		}
@@ -150,26 +159,8 @@ NAVIGATION STYLES
 /* Top Nav */
 #topbar {
 	padding-top: 0.5em;
-	 
-	.nav{
-		border-top: none;
-		border-bottom: none;
-		float: right;
-		font-size: 0.8em;
-		li{
-		padding-top: 0.5em;
-		&.menu-item-search{
-			padding-top: 0;	
-		}
-			a {
-				&:hover, &:focus {
-					background-color: transparent;
-					text-decoration: underline;
-					
-				}
-			}
-		}
-		
+	a{
+		padding: 0.75em;
 	}
 }
 /* Footer Nav */
@@ -214,7 +205,7 @@ SIDEBARS & ASIDES
 
 	.widget {
 		padding: 0 10px;
-		margin: 2.2em 0;
+	
 
 		ul {
 			li {

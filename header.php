@@ -72,7 +72,7 @@
 					<?php  bloginfo('description'); ?>
 					</div>
 
-					<nav role="navigation">
+					<nav role="navigation" id="fullmenu">
 						<?php wp_nav_menu(array(
     					'container' => false,                           // remove nav container
     					'container_class' => 'menu cf',                 // class of container (should you choose to use it)
@@ -88,6 +88,17 @@
 						)); ?>
 
 					</nav>
+
+				<nav id="responsivemenu" role="navigation">
+					<?php wp_nav_menu(array(
+						'theme_location' => 'main-nav',
+						'container' => false,
+						'items_wrap'     => '<select  onChange="window.document.location.href=this.options[this.selectedIndex].value;" value="GO"><option>Menu</option>%3$s</select>',
+						'walker' => new Walker_Responsive_Menu())
+
+					); ?>
+					</nav>
+
 
 				</div>
 

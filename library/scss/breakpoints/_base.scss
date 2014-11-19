@@ -159,6 +159,8 @@ HEADER STYLES
 
 	#logo {
 		margin: 0.75em 0;
+		width: 99%;
+		clear: both;
 
 		a {
 			/* color: $white; */
@@ -177,12 +179,15 @@ easily write one group of styles for
 the navs on the site so our css is cleaner
 and more scalable.
 */
+#fullmenu{display: none;}
+#responsivemenu {padding-top: 1em;}
 
 .nav {
 	border-bottom: 0;
 	margin: 0;
 	font-family: $robofont;
 	font-weight: 500;
+	clear:both;
 
 	li {
 		text-transform: uppercase;
@@ -261,10 +266,41 @@ and more scalable.
 	}
 	
 }
+/* Top Nav */
+#topbar {
+
+	 
+	.nav{
+		border-top: none;
+		border-bottom: none;
+		float: right;
+		font-size: 0.8em;
+		li{
+		padding-top: 0.5em;
+		float: left;
+		&.menu-item-search{
+			padding-top: 0;	
+		}
+			a {
+				padding: 0 0.2em;
+				&:hover, &:focus {
+					background-color: transparent;
+					text-decoration: underline;
+					
+				}
+			}
+		}
+		
+	}
+}
+
 .menu-search-form {}
+
 .footer .nav{
+
 float: none;
-width: 100%;
+margin: 0 auto;
+display: inline-block;
 	li {
 
 		a {
@@ -300,6 +336,7 @@ POSTS & CONTENT STYLES
 			border-radius: 3px;
 			margin-bottom: 1.5em;
 			border-bottom: 1px solid $light-gray;
+			padding-top: 1em;
 			.page &, .single &{
 				background-color: transparent;
 			}
@@ -932,7 +969,7 @@ SIDEBARS & ASIDES
 		font-weight: 500;}
 
 	.widget {
-
+	margin: 2.2em 0;
 
 		ul {
 
@@ -964,7 +1001,7 @@ SIDEBARS & ASIDES
 	}
 .widget.homewidget{
 	
-	background-color: #F7F7F7;
+	background-color: $home-background;
 	 padding-bottom: 0.6em;
 
 	.widgettitle{
@@ -987,12 +1024,21 @@ SIDEBARS & ASIDES
    		padding-right: 0.5em;
 
 	}
+
+
+
+
 	p , > div{padding: 0px 3em;}
 
 }
-.homeideas.widget.homewidget{padding: 0; background-color: transparent;}
-.homeideas.widget.homewidget p, .homeideas.widget.homewidget >div {padding: 0;}
 
+.homeideas.widget.homewidget{
+
+	padding: 0; background-color: transparent;
+	& p, & >div{padding: 0;}
+}
+/*.homeideas.widget.homewidget p, .homeideas.widget.homewidget >div {padding: 0;}
+*/
 #homewidgetarea {
 	.home-news .entry-meta{text-transform: uppercase; font-size: 0.8em;}
  	.upw-posts h4.entry-title {font-size: 1.2em;}
@@ -1007,15 +1053,15 @@ SIDEBARS & ASIDES
 		background-color: #ffffff;
 		background: url(image); background-repeat: repeat-x;
 		/* Safari 4-5, Chrome 1-9 */
-		background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f2f8f2), to(#ffffff));
+		background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dff9df), to(#ffffff));
 		/* Safari 5.1, Chrome 10+ */
-		background: -webkit-linear-gradient(top, #f2f8f2, #ffffff);
+		background: -webkit-linear-gradient(top, #dff9df, #ffffff);
 		/* Firefox 3.6+ */
-		background: -moz-linear-gradient(top, #f2f8f2, #ffffff);
+		background: -moz-linear-gradient(top, #dff9df, #ffffff);
 		/* IE 10 */
-		background: -ms-linear-gradient(top, #f2f8f2, #ffffff);
+		background: -ms-linear-gradient(top, #dff9df, #ffffff);
 		/* Opera 11.10+ */
-		background: -o-linear-gradient(top, #f2f8f2, #ffffff);
+		background: -o-linear-gradient(top, #dff9df, #ffffff);
 	}
 
 	&.widget_ultimate_posts li{

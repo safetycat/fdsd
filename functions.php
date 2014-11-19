@@ -184,6 +184,16 @@ function bones_register_sidebars() {
     'after_title' => '</h4>',
   ));
 
+   register_sidebar(array(
+    'id' => 'themes',
+    'name' => __( 'Themes', 'bonestheme' ),
+    'description' => __( 'The Theme sidebar area.', 'bonestheme' ),
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h4 class="widgettitle">',
+    'after_title' => '</h4>',
+  ));
+
 	/*
 	to add more sidebars or widgetized areas, just copy
 	and edit the above sidebar code. In order to call
@@ -275,6 +285,22 @@ add_action('wp_enqueue_scripts', 'bones_fonts');
 //////// AFTER BONES //////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 
+function custom_excerpt($text) {  // custom 'read more' link
+
+   if (strpos( $text, 'readmore')) {
+      //$readmore ='<span class="readmore btn"><a class="excerpt-read-more" href="'. get_permalink($post->ID) . '" title="'. __( 'Read ', 'bonestheme' ) . get_the_title($post->ID).'">'. __( 'Read more', 'bonestheme' ) .'</a></span>';
+      $excerpt = $text;
+   } else {
+      $excerpt = '<p>' . $text . '</p><p><span class="readmore btn manual-excerpt"><a class="excerpt-read-more" href="'. get_permalink($post->ID) . '" title="'. __( 'Read ', 'bonestheme' ) . get_the_title($post->ID).'">'. __( 'Read more', 'bonestheme' ) .'</a></span></p>';
+   }
+   return $excerpt;
+}
+
+add_filter('the_excerpt', 'custom_excerpt');
+add_filter('get_the_excerpt', 'custom_excerpt');
+//return '...  <a class="excerpt-read-more" href="'. get_permalink($post->ID)
+//. '" title="'. __( 'Read ', 'bonestheme' ) . get_the_title($post->ID).'">'.
+//__( 'Read more &raquo;', 'bonestheme' ) .'</a>';
 
    
 /**
@@ -341,16 +367,68 @@ function add_textarea()
 
 // Add specific CSS class by filter
 add_filter( 'body_class', 'searchfilterclass' );
+
 function searchfilterclass( $classes ) {
-  // add 'class-name' to the $classes array
+  // add 'searchfilter' to the $classes array
   if (isset($_POST)){
    $classes[] = 'searchfilter'; 
-  }
-  
+  }  
   // return the $classes array
   return $classes;
 }
 
+
+// Add grandparent page body class
+add_filter( 'body_class', 'sp_body_class' );
+function sp_body_class( $classes ) {
+  if( is_page() ) {
+    $parents = get_post_ancestors( get_the_ID() );
+    $id = ($parents) ? $parents[count($parents)-1]: $post->ID;
+    if ($id) {
+      $classes[] = 'top-parent-' . $id;
+    } else {
+      $classes[] = 'top-parent-' . get_the_ID();
+    }
+  }
+  return $classes;
+}
+
+// UPW filter
+
+// Gets page sidebar ideas for Theme pages
+function get_idea_theme($what_page){
+
+
+switch ($what_page) {
+   case 486:
+          // constitutions-rights-and-law
+          $theme_id = 6;
+         
+         break;
+   case 492:
+        // culture-values-and-awareness
+        $theme_id = 8;
+         break;
+
+   case 490:
+         // participation-in-decision-making
+          $theme_id = 9;
+         break;
+
+  case 488:
+        // political-institutions-and-policy-making
+        $theme_id = 10;
+         break;
+
+   case 494:
+         // roles-of-civil-society-and-business
+        $theme_id = 27;
+         break;
+}
+
+
+  return $theme_id;
+}
 ////////// Custom Columns ///////
 
 
@@ -405,58 +483,69 @@ function tw_remove_menu_pages() {
 add_action( 'admin_menu', 'tw_remove_menu_pages', 999 );
 
 
-// Include tags in search
-// add_action( 'pre_get_posts', 'include_tags_in_search' );
-// function include_tags_in_search($query){
-//     if($query->is_search){
-//         $terms = explode(' ', $query->get('s'));
-//         $query->set('tax_query', array(
-//             'relation'=>'OR',
-//             array(
-//                 'taxonomy'=>'post_tag',
-//                 'field'=>'slug',
-//                 'terms'=>$terms
-//             )
-//         ));
-//     }
-// }
-
-
-function custom_search_where($where){
-  global $wpdb;
-  if (is_search())
-    $where .= "OR (t.name LIKE '%".get_search_query()."%' AND {$wpdb->posts}.post_status = 'publish')";
-  return $where;
+// Add browser and op system to body class
+function mv_browser_body_class($classes) {
+        global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
+        if($is_lynx) $classes[] = 'lynx';
+        elseif($is_gecko) $classes[] = 'gecko';
+        elseif($is_opera) $classes[] = 'opera';
+        elseif($is_NS4) $classes[] = 'ns4';
+        elseif($is_safari) $classes[] = 'safari';
+        elseif($is_chrome) $classes[] = 'chrome';
+        elseif($is_IE) {
+                $classes[] = 'ie';
+                if(preg_match('/MSIE ([0-9]+)([a-zA-Z0-9.]+)/', $_SERVER['HTTP_USER_AGENT'], $browser_version))
+                $classes[] = 'ie'.$browser_version[1];
+        } else $classes[] = 'unknown';
+        if($is_iphone) $classes[] = 'iphone';
+        if ( stristr( $_SERVER['HTTP_USER_AGENT'],"mac") ) {
+                 $classes[] = 'osx';
+           } elseif ( stristr( $_SERVER['HTTP_USER_AGENT'],"linux") ) {
+                 $classes[] = 'linux';
+           } elseif ( stristr( $_SERVER['HTTP_USER_AGENT'],"windows") ) {
+                 $classes[] = 'windows';
+           }
+        return $classes;
 }
+add_filter('body_class','mv_browser_body_class');
 
-function custom_search_join($join){
-  global $wpdb;
-  if (is_search())
-    $join .= "LEFT JOIN {$wpdb->term_relationships} tr ON {$wpdb->posts}.ID = tr.object_id INNER JOIN {$wpdb->term_taxonomy} tt ON tt.term_taxonomy_id=tr.term_taxonomy_id INNER JOIN {$wpdb->terms} t ON t.term_id = tt.term_id";
-  return $join;
+
+
+
+/**
+ * Custom Menu Walker for Responsive Menus
+ *
+ * Creates a <select> menu instead of the default
+ * unordered list menus.
+ *
+ **/
+
+class Walker_Responsive_Menu extends Walker_Nav_Menu {
+
+  // don't output children opening tag (`<ul>`)
+    public function start_lvl(&$output, $depth){}
+
+    // don't output children closing tag    
+    public function end_lvl(&$output, $depth){}
+
+    public function start_el(&$output, $item, $depth, $args){
+
+      $url = $item->url;
+      $replaceit = "<option value='" . $url . "'";
+      // add spacing to the title based on the current depth
+      $item->title = str_repeat("&nbsp;", $depth * 4) . $item->title;
+
+      // call the prototype and replace the <li> tag
+      // from the generated markup...
+      parent::start_el(&$output, $item, $depth, $args);
+      $output = str_replace('<li', $replaceit, $output);
+    }
+
+    // replace closing </li> with the closing option tag
+    public function end_el(&$output, $item, $depth){
+      $output .= "</option>\n";
+    }
 }
-
-function custom_search_groupby($groupby){
-  global $wpdb;
-
-  // we need to group on post ID
-  $groupby_id = "{$wpdb->posts}.ID";
-  if(!is_search() || strpos($groupby, $groupby_id) !== false) return $groupby;
-
-  // groupby was empty, use ours
-  if(!strlen(trim($groupby))) return $groupby_id;
-
-  // wasn't empty, append ours
-  return $groupby.", ".$groupby_id;
-}
-
-/*add_filter('posts_where','custom_search_where');
-add_filter('posts_join', 'custom_search_join');
-add_filter('posts_groupby', 'custom_search_groupby');*/
-
-
-
-
 
 
 

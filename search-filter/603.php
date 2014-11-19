@@ -26,7 +26,7 @@ if ( $query->have_posts() )
 		<?php
 											echo '<li class="d-1of3 t-1of3 .m-all">';
 											the_post_thumbnail( 'idea-thumb' );
-											echo "<div class='ideabox'><i class='fa fa-leaf'></i>";
+											echo "<div class='ideabox'>";
 											echo "<h3 class=''><a href='" . get_permalink() . "'>" . get_the_title( ) . "</a></h3>";
 											echo '</div></li>';
 											
